@@ -1,0 +1,18 @@
+@import './variables.scss';
+
+button {
+    padding: 15px 0;
+    width: 100%;
+    border: none;
+    background-color: $default_gray;
+    border-radius: 5px;
+    color: #fff;
+
+    &.primary {
+        background-color: $active_blue;
+    }
+
+    &:disabled {
+        background-color: $disable_gray;
+    }
+}

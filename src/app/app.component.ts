@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'DarkShoop';
+  title = 'DarkShoop'
+  isMobile = false
+
+  constructor() {
+    this.isMobile = window.innerWidth <= 768
+
+    window.onresize = () => {
+      this.isMobile = window.innerWidth <= 768
+    }
+  }
 }
