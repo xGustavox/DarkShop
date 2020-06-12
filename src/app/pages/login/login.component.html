@@ -1,19 +1,23 @@
-<div class="center-info">
-    <div class="top">
-        <div class="img-logo">
-            <img src="/assets/imgs/triangle-mockup.svg" alt="">
+<div class="container">
+    <div class="center-info">
+        <div class="top">
+            <div class="img-logo">
+                <img src="/assets/imgs/triangle-mockup.svg" alt="">
+            </div>
+            <div class="instructions">
+                Entre com um e-mail válido <br>
+                para acessar a plataforma.
+            </div>
         </div>
-        <div class="instructions">
-            Entre com um e-mail válido <br>
-            para acessar a plataforma.
+        <div class="login-form">
+            <form [formGroup]="loginForm" action="">
+                <input formControlName="name" type="text" class="fix-borders" placeholder="Nome ou apelido">
+                <input formControlName="email" type="text" placeholder="E-mail">
+                <button type="button" class="primary" (click)="Login()" [disabled]="!loginForm.valid">Entrar no DarkShoop</button>
+            </form>
         </div>
-    </div>
-    <div class="login-form">
-        <input type="text" class="fix-borders" placeholder="Nome ou apelido">
-        <input type="text" placeholder="E-mail">
-        <button class="primary" [disabled]=false>Entrar no DarkShoop</button>
-    </div>
-    <div class="other">
-        Entrar sem informar mes dados
+        <div class="other">
+            Entrar sem informar mes dados
+        </div>
     </div>
 </div>

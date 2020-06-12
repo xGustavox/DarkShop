@@ -1,2 +1,4 @@
-<router-outlet *ngIf="isMobile"></router-outlet>
+<main [@routeAnimations]="PrepareRoute(o)" *ngIf="isMobile">
+    <router-outlet #o="outlet"></router-outlet>
+</main>
 <warning-only-mobile *ngIf="!isMobile"></warning-only-mobile>

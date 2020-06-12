@@ -1,0 +1,18 @@
+.list-wrapper {
+    background-color: #1a1a1a;
+    color: #fff;
+
+    .title {
+        padding: 15px 20px;
+        font-size: 20px;
+    }
+
+    ul {
+        padding: 15px 20px;
+        list-style: none;
+
+        li {
+            margin: 15px 0;
+        }
+    }
+}
