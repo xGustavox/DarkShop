@@ -3,7 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { TermsUseComponent } from './pages/terms-use/terms-use.component';
+import { TabsComponent } from './pages/tabs/tabs.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SearchComponent } from './pages/search/search.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 
 const routes: Routes = [
@@ -29,8 +32,36 @@ const routes: Routes = [
     }
   },
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'tabs',
+    component: TabsComponent,
+    children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+        data: {
+          animation: 5
+        }
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        data: {
+          animation: 6
+        }
+      },
+      {
+        path: 'search',
+        component: SearchComponent,
+        data: {
+          animation: 7
+        }
+      },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      }
+    ],
     data: {
       animation: 4
     }

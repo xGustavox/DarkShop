@@ -1,5 +1,6 @@
 @import './assets/scss/buttons.scss';
 @import './assets/scss/font.scss';
+@import './assets/scss/icons.scss';
 
 * {
     padding: 0;
@@ -26,6 +27,7 @@ main {
     width: 100%;
     height: 100%;
     background-color: black;
+    overflow: auto;
 
     &.padding {
         padding: 15px;

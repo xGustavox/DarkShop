@@ -1,0 +1,47 @@
+@import './../../../assets/scss/variables.scss';
+
+.nav-tabs {
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    bottom: 0;
+    color: #fff;
+
+    .blur {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .darken {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .tab {
+        padding: 15px 0;
+        width: 33.3333333%;
+        height: 70px;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 500;
+        float: left;
+        color: #999999;
+
+        .label {
+            margin-top: 2px;
+        }
+
+        span {
+            font-size: 25px;
+        }
+
+        &.active {
+            color: $active_blue;
+        }
+    }
+}

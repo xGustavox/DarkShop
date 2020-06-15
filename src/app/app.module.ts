@@ -9,8 +9,12 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TermsUseComponent } from './pages/terms-use/terms-use.component';
-import { ProductGroupCardComponent } from './components/product-group-card/product-group-card.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ProductGroupCardComponent } from './components/product-group-card/product-group-card.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { SearchComponent } from './pages/search/search.component';
+import { NavTabsComponent } from './components/nav-tabs/nav-tabs.component';
+import { TabsComponent } from './pages/tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { HomeComponent } from './pages/home/home.component';
     WelcomeComponent,
     TermsUseComponent,
     ProductGroupCardComponent,
-    HomeComponent
+    HomeComponent,
+    CategoriesComponent,
+    SearchComponent,
+    NavTabsComponent,
+    TabsComponent
   ],
   imports: [
     BrowserModule,
