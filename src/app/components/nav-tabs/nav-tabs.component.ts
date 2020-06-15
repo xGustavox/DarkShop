@@ -10,6 +10,6 @@ export class NavTabsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let router = document.getElementById("router-to-blur")
   }
-
 }
