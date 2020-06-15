@@ -17,19 +17,19 @@ export class NavTabsComponent implements OnInit {
     router.events.subscribe((event) => {
       if(event instanceof NavigationEnd) {
         let canvasWrapper = document.getElementById("canvas")
-        let routerContent = document.getElementById("container")
-        
-    
-        html2canvas(document.getElementById("container-blur")).then(canvas => {
-          canvasWrapper.appendChild(canvas)
-          canvasWrapper.style.transform = `translateY(-${window.innerHeight - 70}px)`
-        })
 
-        routerContent.onscroll = (scroll: any) => {
-          let scrolled = scroll.target.scrollTop
-
-          canvasWrapper.style.transform = `translateY(-${(window.innerHeight - 70) + scrolled}px)`
-        }
+        setTimeout(() => {
+          html2canvas(document.getElementById("container-blur")).then(canvas => {
+            console.log(window.scrollY)
+            canvasWrapper.appendChild(canvas)
+            canvasWrapper.style.transform = `translateY(-${(window.innerHeight - 70) + window.scrollY}px)`
+          })
+  
+          window.onscroll = (scroll: any) => {            
+            let scrolled = window.scrollY
+            canvasWrapper.style.transform = `translateY(-${(window.innerHeight - 70) + scrolled}px)`
+          }
+        }, 100)
       }
     })
   }
