@@ -1,0 +1,21 @@
+.nav-categories {
+    padding: 10px;
+    position: fixed;
+
+    ul {
+        list-style: none;
+
+        li {
+            font-size: 15px;
+            color: #808080;
+            margin-right: 15px;
+            display: inline;
+            font-weight: 600;
+
+            &.active {
+                color: #fff;
+                font-size: 20px;
+            }
+        }
+    }
+}

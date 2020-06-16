@@ -1,0 +1,11 @@
+<div class="filter">
+    <button type="button" (click)="OpenOptions($event, 0)">Ordenar por</button>
+    <button type="button" (click)="OpenOptions($event, 1)">Faixa de preço</button>
+    <div id="choice-ballon" class="choice-ballon">
+        <ul>
+            <li *ngFor="let f of filterToShow" [ngClass]="{'last': f == 'default'}" (click)="AplyFilter(f)">
+                {{filters[controllerState]["filters"][f]}}
+            </li>
+        </ul>
+    </div>
+</div>

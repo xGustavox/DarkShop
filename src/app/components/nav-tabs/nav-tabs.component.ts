@@ -17,6 +17,7 @@ export class NavTabsComponent implements OnInit {
     router.events.subscribe((event) => {
       if(event instanceof NavigationEnd) {
         let canvasWrapper = document.getElementById("canvas")
+        canvasWrapper.innerHTML = ""
 
         setTimeout(() => {
           html2canvas(document.getElementById("container-blur")).then(canvas => {
@@ -29,7 +30,7 @@ export class NavTabsComponent implements OnInit {
             let scrolled = window.scrollY
             canvasWrapper.style.transform = `translateY(-${(window.innerHeight - 70) + scrolled}px)`
           }
-        }, 100)
+        }, 500)
       }
     })
   }

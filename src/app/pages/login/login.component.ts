@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor
   (
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService
 
   ) 
   { 
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   Login() {
+    this.userService.setUser(this.loginForm.value.name, this.loginForm.value.email)
     this.router.navigate(['welcome'])
   }
-
 }
