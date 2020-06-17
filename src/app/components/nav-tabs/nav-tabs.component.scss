@@ -6,16 +6,20 @@
     position: fixed;
     bottom: 0;
     color: #fff;
+    transition: .2s ease-in-out;
+
+    &.bluring {
+        background-color: black;
+    }
 
     .blur {
-        padding: 0 15px;
         width: 100%;
         height: 100%;
         position: absolute;
         z-index: -2;
         overflow: hidden;
 
-        .canvas {
+        .canvas-wrapper {
             filter: blur(5px);
         }
     }

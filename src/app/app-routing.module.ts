@@ -7,6 +7,7 @@ import { TabsComponent } from './pages/tabs/tabs.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,13 @@ const routes: Routes = [
     ],
     data: {
       animation: 4
+    }
+  },
+  {
+    path: 'product-detail',
+    component: ProductDetailComponent,
+    data: {
+      animation: 8
     }
   },
   {

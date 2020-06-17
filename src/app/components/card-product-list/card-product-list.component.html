@@ -1,1 +1,11 @@
-<p>card-product-list works!</p>
+<div id="teste" class="card solid-color" (click)="Click()">
+    <div id="top_{{product.id}}" class="top">
+        <img class="img" [src]="product.imgPath" alt="">
+    </div>
+    <div class="info">
+        <!-- <div class="recent-viewed">Visualizado recentemente</div> -->
+        <div class="price">R$ 70,00</div>
+        <div class="desc">O guia definitivo do mochileiro das galáxias</div>
+        <div class="detail-desc">Douglas Adams</div>
+    </div>
+</div>

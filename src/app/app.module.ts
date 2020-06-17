@@ -18,6 +18,8 @@ import { TabsComponent } from './pages/tabs/tabs.component';
 import { NavCategoriesComponent } from './components/nav-categories/nav-categories.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { CardProductListComponent } from './components/card-product-list/card-product-list.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ShoopingCartComponent } from './components/shooping-cart/shooping-cart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CardProductListComponent } from './components/card-product-list/card-pr
     TabsComponent,
     NavCategoriesComponent,
     FilterComponent,
-    CardProductListComponent
+    CardProductListComponent,
+    ProductDetailComponent,
+    ShoopingCartComponent
   ],
   imports: [
     BrowserModule,

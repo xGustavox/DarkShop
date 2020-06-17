@@ -1,1 +1,17 @@
-<p>search works!</p>
+<div class="serach-input">
+    <input type="text" placeholder="Buscar produtos...">
+    <div class="magnfying-glass">
+        <span class="icon-search"></span>
+    </div>
+</div>
+<div id="container" class="container padding">
+    <filter></filter>
+    <div class="wrapper-cards-list">
+        <div class="column">
+            <card-product-list *ngFor="let p of produtos_l" [product]="p"></card-product-list>
+        </div>
+        <div class="column">
+            <card-product-list *ngFor="let p of produtos_r" [product]="p"></card-product-list>
+        </div>
+    </div>
+</div>

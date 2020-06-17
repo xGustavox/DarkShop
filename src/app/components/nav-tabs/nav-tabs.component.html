@@ -1,18 +1,19 @@
-<div class="nav-tabs">
-    <div class="tab" routerLink="/tabs/home">
+<div class="nav-tabs" [ngClass]="{'bluring': bluring}">
+    <div class="tab active home" routerLink="/tabs/home">
         <span class="icon-benson"></span>
         <div class="label">Inicio</div>
     </div>
-    <div class="tab" routerLink="/tabs/categories">
+    <div class="tab categories" routerLink="/tabs/categories">
         <span class="icon-categorias"></span>
         <div class="label">Categorias</div>
     </div>
-    <div class="tab" routerLink="/tabs/search">
+    <div class="tab search" routerLink="/tabs/search">
         <span class="icon-search"></span>
         <div class="label">Pesquisa</div>
     </div>
     <div class="darken"></div>
     <div id="blur" class="blur">
-        <div id="canvas" class="canvas"></div>
+        <div id="canvas-wrapper" class="canvas-wrapper"></div>
     </div>
 </div>
+<shooping-cart *ngIf="0 > 0"></shooping-cart>

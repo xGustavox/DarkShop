@@ -1,0 +1,61 @@
+<div class="shooping-cart active">
+    <div class="tag" (click)="ToggleCart()">
+        <div class="number-of-products">
+            <span class="icon-cart"></span>
+            1
+        </div>
+        Ver carrinho
+        <div class="price">R$ 23,00</div>
+    </div>
+    <div id="shooping-modal" class="shooping-modal">
+        <div class="top" (click)="ToggleCart()">
+            Seu carrinho
+        </div>
+        <div>
+            <div class="product-list">
+                <div class="title">Itens</div>
+                <div class="list">
+                    <ul>
+                        <li>
+                            <img src="./../../../assets/imgs/livroteste.png" alt="">
+                            <div class="desc">Harry Potter e o enigma do príncipe</div>
+                            <div class="price">R$ 23,90</div>
+                            <div class="delete">
+                                <span class="icon-delete"></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="checkout">
+                <div class="title">Resumo</div>
+                <div class="list">
+                    <ul>
+                        <li>
+                            <span class="label">Itens</span>
+                            <span class="price">R$ 10,00</span>
+                        </li>
+                        <li>
+                            <span class="label">LOGÍSTICA</span>
+                            <span class="price">R$ 10,00</span>
+                        </li>
+                        <li>
+                            <span class="label">FRETE</span>
+                            <span class="price">R$ 10,00</span>
+                        </li>
+                        <li class="total">
+                            <span class="label">TOTAL</span>
+                            <span class="price">R$ 30,00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="order">
+                <button class="primary">FAZER PEDIDO</button>
+            </div>
+            <div class="warning">
+                O valor do pedido deve ser até <span>R$ 100</span>
+            </div>
+        </div>
+    </div>
+</div>
