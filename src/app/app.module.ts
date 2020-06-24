@@ -20,6 +20,8 @@ import { FilterComponent } from './components/filter/filter.component';
 import { CardProductListComponent } from './components/card-product-list/card-product-list.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ShoopingCartComponent } from './components/shooping-cart/shooping-cart.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +40,15 @@ import { ShoopingCartComponent } from './components/shooping-cart/shooping-cart.
     FilterComponent,
     CardProductListComponent,
     ProductDetailComponent,
-    ShoopingCartComponent
+    ShoopingCartComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

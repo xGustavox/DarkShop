@@ -9,40 +9,43 @@ import { Router } from '@angular/router';
 })
 export class CardProductListComponent implements OnInit {
 
+  @ViewChild('img') img
   @Input('product') product
 
   constructor
   (
     private router: Router
   ) 
-  { }
+  { 
+
+  }
 
   ngOnInit(): void {
+  }
+
+  Teste(e) {
+    console.log(e.target.parentNode);
     
   }
 
   ngAfterViewInit() {
-    const top = document.getElementById(`top_${this.product.id}`)
-    const img = top.querySelector('img')
-    let colors
-
-    if (img.complete)
-      this.SetBackColor(img, top)
-    else {
-      img.addEventListener('load', () => {
-        this.SetBackColor(img, top)
-      })
-    }
   }
 
-  SetBackColor(img, top) {
+  SetBackColor(event) {
+    let img = event.target
+    let top = img.parentNode
+
     const colorThief = new ColorThief()
 
-    let colors = colorThief.getColor(img)
+    let colors = colorThief.getPalette(img, 5)[2]
     top.style.backgroundColor = `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`
   }
 
   Click() {
-    this.router.navigate(['product-detail'])
+    this.router.navigate(['product-detail'], {
+      queryParams: {
+        product: JSON.stringify(this.product)
+      }
+    })
   }
 }

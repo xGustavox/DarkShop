@@ -7,18 +7,18 @@
     </div>
     <div class="info">
         <div id="product-image" class="product-image">
-            <img src="/assets/imgs/132451516_1GG.png" alt="">
+            <img [src]="product.imgPath" alt="" (load)="SetBackColor($event)">
         </div>
         <div class="desc">
-            Harry Potter e o Enigma do Príncipe
+            {{product.name}}
         </div>
-        <div class="sub-desc">J.K. Rolling</div>
+        <div class="sub-desc">Adcionar info</div>
         <div class="full-desc">Nullam vitae tristique est. Etiam velit ante, consectetur 
             sit amet ullamcorper mollis, elementum ac neque. Nunc 
             tellus sapien, blandit pellentesque tincidunt vitae.</div>
-        <button class="primary">
+        <button class="primary" (click)="AddToCart()">
             <span class="button-text">ADICIONAR AO CARRINHO </span>
-            <span class="price-text">R$ 24,00</span>
+            <span class="price-text">R$ {{product.price}}</span>
         </button>
     </div>
 </div>

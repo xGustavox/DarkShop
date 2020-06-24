@@ -17,7 +17,7 @@ export class FilterComponent implements OnInit {
       filters: {
         smallestPrice: "Menor preço",
         biggerPrice: "Maior preço",
-        author: "Autor",
+        // author: "Autor",
         default: "Limpar ordenação"
       },
     },

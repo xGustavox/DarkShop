@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   (
     private router: Router,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private loading: LoadingService
 
   ) 
   { 
@@ -30,7 +32,12 @@ export class LoginComponent implements OnInit {
   }
 
   Login() {
-    this.userService.setUser(this.loginForm.value.name, this.loginForm.value.email)
-    this.router.navigate(['welcome'])
+    this.loading.show()
+    this.userService.setUser(this.loginForm.value.name, this.loginForm.value.email).subscribe((res) => {
+      this.router.navigate(['welcome'])
+      this.loading.dismiss()
+    }, err => {
+      console.log(err)
+    })
   }
 }

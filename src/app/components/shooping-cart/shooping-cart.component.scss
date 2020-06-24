@@ -36,18 +36,36 @@
         }
     }
 
+    @keyframes openModal {
+        0% {
+            height: 0px;
+            overflow: hidden;
+        }
+        99% {
+            height: 100%;
+            overflow: hidden;
+        }
+        100% {
+            height: 100%;
+            overflow: auto;
+        }
+    }
+
     .shooping-modal {
         border-top-left-radius: 30px;
         border-top-right-radius: 30px;
         background-color: black;
         color: #fff;
         position: fixed;
-        bottom: -443px;
+        bottom: 0px;
         width: 100%;
+        height: 0px;
+        overflow: hidden;
         transition: .2s ease-in-out;
 
         &.active {
-            bottom: 0px;
+            // height: 100%;
+            animation: openModal .3s ease-in-out forwards;
         }
 
         .top {
@@ -78,6 +96,11 @@
                         height: 50px;
                         position: relative;
                         font-size: 12px;
+                        margin-bottom: 15px;
+
+                        &.removing {
+                            animation: remove .5s ease forwards;
+                        }
 
                         img {
                             height: 50px;
@@ -167,5 +190,18 @@
                 font-weight: 600;
             }
         }
+    }
+}
+
+@keyframes remove {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+        height: 50px;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+        height: 0px;
     }
 }

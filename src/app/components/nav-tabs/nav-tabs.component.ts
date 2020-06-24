@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import html2canvas from 'html2canvas';
 import { Router, NavigationEnd } from '@angular/router';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 
 
 @Component({
@@ -11,13 +12,32 @@ import { Router, NavigationEnd } from '@angular/router';
 export class NavTabsComponent implements OnInit {
 
   bluring = false
+  shoppingCartHasItens = false
 
   constructor
   (
+    private shoppingCartService: ShoppingCartService,
     private router: Router
   ) 
   { 
-    router.events.subscribe(event => {
+    this.Blur()
+    
+    shoppingCartService.statusChanged.subscribe((data: any) => {
+      this.shoppingCartHasItens = data.length > 0
+    })
+  }
+
+  ngOnInit(): void {
+    
+  }
+
+  ToggleShoppingCart(show) {
+    console.log('show', show);
+    this.shoppingCartHasItens = show
+  }
+
+  Blur() {
+    this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.bluring = true
         this.ActivateTab(event)
@@ -42,13 +62,9 @@ export class NavTabsComponent implements OnInit {
             let scrolled = window.scrollY
             canvasWrapper.style.transform = `translateY(-${(window.innerHeight - 70) + scrolled}px)`
           }
-        }, 100);
+        }, 500);
       }
     })
-  }
-
-  ngOnInit(): void {
-    
   }
 
   private ActivateTab(event) {

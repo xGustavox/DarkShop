@@ -1,12 +1,17 @@
-<div class="shooping-cart active">
+<div class="shooping-cart">
     <div class="tag" (click)="ToggleCart()">
         <div class="number-of-products">
             <span class="icon-cart"></span>
-            1
+            {{qtdProducts}}
         </div>
         Ver carrinho
-        <div class="price">R$ 23,00</div>
+        <div class="price">R$ {{price}}</div>
     </div>
+
+    <!-- ================= -->
+    <!-- MODAL DO CARRINHO -->
+    <!-- ================= -->
+
     <div id="shooping-modal" class="shooping-modal">
         <div class="top" (click)="ToggleCart()">
             Seu carrinho
@@ -15,12 +20,15 @@
             <div class="product-list">
                 <div class="title">Itens</div>
                 <div class="list">
-                    <ul>
-                        <li>
-                            <img src="./../../../assets/imgs/livroteste.png" alt="">
-                            <div class="desc">Harry Potter e o enigma do príncipe</div>
-                            <div class="price">R$ 23,90</div>
-                            <div class="delete">
+                    <div *ngIf="products.length == 0">
+                        Adicione produtos ao seu carrinho
+                    </div>
+                    <ul *ngIf="products.length > 0">
+                        <li *ngFor="let p of products; let i =index">
+                            <img [src]="p.imgPath" alt="">
+                            <div class="desc">{{p.name}}</div>
+                            <div class="price">R$ {{p.price.toLocaleString('pt-BR')}}</div>
+                            <div class="delete" (click)="Remove($event, i)">
                                 <span class="icon-delete"></span>
                             </div>
                         </li>

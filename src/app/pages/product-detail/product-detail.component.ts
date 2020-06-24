@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import ColorThief from 'colorthief'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,32 +11,44 @@ import { Location } from '@angular/common';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  product
+
+  constructor
+  (
+    private location: Location,
+    private route: ActivatedRoute,
+    private shoppingCartService: ShoppingCartService
+  ) 
+  { 
+    
+  }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params)
+        this.product = JSON.parse(params.product)
+      else
+        this.location.back()
+    })
   }
+  
 
-  ngAfterViewInit() {
-    const imgWrapper = document.getElementById(`product-image`)
-    const img = imgWrapper.querySelector('img')
+  SetBackColor(event) {
+    let img = event.target
+    let top = img.parentNode
 
-    if (img.complete)
-      this.SetBackColor(img, imgWrapper)
-    else {
-      img.addEventListener('load', () => {
-        this.SetBackColor(img, imgWrapper)
-      })
-    }
-  }
-
-  SetBackColor(img, imgWrapper) {
     const colorThief = new ColorThief()
 
-    let colors = colorThief.getColor(img)
-    imgWrapper.style.backgroundColor = `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`
+    let colors = colorThief.getPalette(img, 5)[2]
+    top.style.backgroundColor = `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`
   }
 
   Back() {
+    this.location.back()
+  }
+
+  AddToCart() {
+    this.shoppingCartService.AddToCart(this.product)
     this.location.back()
   }
 }
