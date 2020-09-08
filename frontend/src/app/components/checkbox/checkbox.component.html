@@ -1,0 +1,4 @@
+<label class="container" [ngClass]="{'darkPatterned': darkPatterned}">{{label}}
+    <input type="checkbox" [checked]="checked" [name]="group" (change)="change($event)">
+    <span class="checkmark"></span>
+</label>

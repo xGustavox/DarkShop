@@ -1,24 +1,39 @@
-<div class="container">
-    <div class="title" (click)="Back()">
-        <div class="exit">
-            <span class="icon-delete"></span>
+<div class="wrapper-gradient">
+    <div class="predominant-color" [style.background-color]="product.color"></div>
+    <div class="content">
+        <div class="fixed-wrapper">
+            <div class="back">
+                < Back
+            </div>
+            <div class="product-info">
+                <img [src]="product.imgPath" alt="">
+                <div class="name">
+                    {{product.name}}
+                </div>
+                <div class="botao">
+                    <botao 
+                        [label]="'Adicionar ao carrinho'" 
+                        [price]="'R$ ' + product.price"
+                        [onClick]="AddToCart">
+                    </botao>
+                </div>
+            </div>
         </div>
-        DETALHES
-    </div>
-    <div class="info">
-        <div id="product-image" class="product-image">
-            <img [src]="product.imgPath" alt="" (load)="SetBackColor($event)">
+        <div class="interesting-products">
+            <div class="center">
+                <div class="grabber"></div>
+            </div>
+            <div class="title">
+                Produtos que podem te interessar
+            </div>
+            <div class="wrapper-cards-list">
+                <div class="column">
+                    <card-product-list *ngFor="let p of produtos_l" [product]="p" [darkPatterned]="true"></card-product-list>
+                </div>
+                <div class="column">
+                    <card-product-list *ngFor="let p of produtos_r" [product]="p" [darkPatterned]="true"></card-product-list>
+                </div>
+            </div>
         </div>
-        <div class="desc">
-            {{product.name}}
-        </div>
-        <div class="sub-desc">Adcionar info</div>
-        <div class="full-desc">Nullam vitae tristique est. Etiam velit ante, consectetur 
-            sit amet ullamcorper mollis, elementum ac neque. Nunc 
-            tellus sapien, blandit pellentesque tincidunt vitae.</div>
-        <button class="primary" (click)="AddToCart()">
-            <span class="button-text">ADICIONAR AO CARRINHO </span>
-            <span class="price-text">R$ {{product.price}}</span>
-        </button>
     </div>
 </div>

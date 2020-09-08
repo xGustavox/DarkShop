@@ -23,6 +23,11 @@ import { ShoopingCartComponent } from './components/shooping-cart/shooping-cart.
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ModalShoppingCartComponent } from './pages/modal-shopping-cart/modal-shopping-cart.component';
+import { BotaoComponent } from './components/botao/botao.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { ToastrModule } from 'ngx-toastr';
+import { CustomToastrComponent } from './components/custom-toastr/custom-toastr.component';
+import { ThankyouComponent } from './pages/thankyou/thankyou.component';
 
 @NgModule({
   declarations: [
@@ -43,14 +48,21 @@ import { ModalShoppingCartComponent } from './pages/modal-shopping-cart/modal-sh
     ProductDetailComponent,
     ShoopingCartComponent,
     LoadingComponent,
-    ModalShoppingCartComponent
+    ModalShoppingCartComponent,
+    BotaoComponent,
+    CheckboxComponent,
+    CustomToastrComponent,
+    ThankyouComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      toastComponent: CustomToastrComponent
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

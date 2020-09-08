@@ -1,10 +1,16 @@
-<div id="teste" class="card solid-color" (click)="Click()">
+<div class="card solid-color" (click)="Click()">
+    <div class="best-seller" *ngIf="darkPatterned && product.bestSeller">
+        Mais <br />
+        vendido
+        <div class="triangle"></div>
+    </div>
     <div id="top_{{product.id}}" class="top">
         <img class="img" [src]="product.imgPath" alt="" (load)="SetBackColor($event)">
     </div>
     <div class="info">
-        <div class="recent-viewed" *ngIf="product.recentViewed">Visualizado recentemente</div>
-        <div class="price">R$ {{product.price}}</div>
+        <div class="recent-viewed" *ngIf="darkPatterned && product.recentViewed && product.stock > 3">Visualizado recentemente</div>
+        <div class="running-out-stock" *ngIf="darkPatterned && product.stock <= 3">{{product.stock}} Unidades restantes</div>
+        <div class="price" *ngIf="!darkPatterned">R$ {{product.price}}</div>
         <div class="desc">{{product.name}}</div>
         <div class="detail-desc">Adicionar info</div>
     </div>

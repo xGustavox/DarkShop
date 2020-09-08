@@ -30,6 +30,26 @@
         </div>
     </div>
     <div class="actions">
-        <button class="primary" routerLink="/tabs/home">Agora sim! Ir para as compras</button>
+        <div class="checks">
+            <checkbox 
+                [label]="'Aceitar os termos. Quem não quer ter a chance de ganhar R$ 100,00 né?'"
+                [group]="'terms'"
+                [onChange]="termsAccepted"
+                [checked]="false">
+            </checkbox>
+            <checkbox 
+                [label]="'Quero receber mais informações sobre a DarkShoop e ajudar na pesquisa.'"
+                [group]="'terms'"
+                [checked]="true"
+                [darkPatterned]="true"
+                [onChange]="helpResearch">
+            </checkbox>
+        </div>
+        <botao 
+            [label]="'Agora sim! Ir para as compras'" 
+            [onClick]="validateAndNavigate"
+            [classes]="'uppercase'"
+            [disabledButton]="!(checkBoxes.termsAccepted && checkBoxes.helpResearch)">
+        </botao>
     </div>
 </div>

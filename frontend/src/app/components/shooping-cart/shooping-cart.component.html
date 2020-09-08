@@ -1,5 +1,5 @@
 <div class="shooping-cart">
-    <div class="tag" (click)="ToggleCart()">
+    <div class="tag" (click)="OpenShoppingCart()">
         <div class="number-of-products">
             <span class="icon-cart"></span>
             {{qtdProducts}}
@@ -13,11 +13,11 @@
     <!-- ================= -->
 
     <div id="shooping-modal" class="shooping-modal">
-        <div class="top" (click)="ToggleCart()">
+        <div class="top" (click)="CloseShoppingCart()">
             <span class="icon-arrow_down"></span>
             Seu carrinho
         </div>
-        <div>
+        <div class="shopping-cart-content-wrapper">
             <div class="product-list">
                 <div class="title">Itens</div>
                 <div class="list">
@@ -30,7 +30,8 @@
                             <div class="desc">{{p.name}}</div>
                             <div class="price">R$ {{p.price.toLocaleString('pt-BR')}}</div>
                             <div class="delete" (click)="Remove($event, i)">
-                                <span class="icon-delete"></span>
+                                <!-- <span class="icon-delete"></span> -->
+                                x
                             </div>
                         </li>
                     </ul>
@@ -44,26 +45,46 @@
                             <span class="label">Itens</span>
                             <span class="price">R$ {{price.toLocaleString('pt-BR')}}</span>
                         </li>
-                        <li>
-                            <span class="label">LOGÍSTICA</span>
-                            <span class="price">R$ {{sale.logistic.toLocaleString('pt-BR')}}</span>
-                        </li>
-                        <li>
-                            <span class="label">FRETE</span>
-                            <span class="price">R$ {{sale.shipping.toLocaleString('pt-BR')}}</span>
+                        <div *ngIf="!darkPatterned">
+                            <li>
+                                <span class="label">Logística</span>
+                                <span class="price">R$ {{sale.logistic.toLocaleString('pt-BR')}}</span>
+                            </li>
+                            <li>
+                                <span class="label">Frete</span>
+                                <span class="price">R$ {{sale.shipping.toLocaleString('pt-BR')}}</span>
+                            </li>
+                        </div>
+                        <li *ngIf="darkPatterned">
+                            <span class="label">Mais custos</span>
+                            <ul>
+                                <li>
+                                    <span class="label">Logística</span>
+                                    <span class="price">R$ {{sale.logistic.toLocaleString('pt-BR')}}</span>
+                                </li>
+                                <li>
+                                    <span class="label">Frete</span>
+                                    <span class="price">R$ {{sale.shipping.toLocaleString('pt-BR')}}</span>
+                                </li>
+                            </ul>
                         </li>
                         <li class="total">
-                            <span class="label">TOTAL</span>
+                            <span class="label">Total</span>
                             <span class="price">R$ {{(price + sale.shipping + sale.logistic).toLocaleString('pt-BR')}}</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="order">
-                <button class="primary">FAZER PEDIDO</button>
-            </div>
-            <div class="warning">
+            <div class="warning" *ngIf="price > 100">
                 O valor do pedido deve ser até <span>R$ 100</span>
+            </div>
+            <div class="order">
+                <botao
+                    [label]="'Fazer Pedido'"
+                    [classes]="'primary uppercase'"
+                    [disabledButton]="price > 100"
+                    [onClick]="CheckoutSale">
+                </botao>
             </div>
         </div>
     </div>

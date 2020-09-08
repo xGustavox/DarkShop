@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import ColorThief from 'colorthief'
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+import { ProductsService } from 'src/app/services/products/products.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,14 +13,18 @@ export class ProductDetailComponent implements OnInit {
 
   product
 
+  produtos_l = []
+  produtos_r = []
+
   constructor
   (
     private location: Location,
     private route: ActivatedRoute,
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private productService: ProductsService
   ) 
   { 
-    
+    this.AddToCart = this.AddToCart.bind(this)
   }
 
   ngOnInit(): void {
@@ -30,17 +34,23 @@ export class ProductDetailComponent implements OnInit {
       else
         this.location.back()
     })
+
+    this.LoadData({})
   }
-  
 
-  SetBackColor(event) {
-    let img = event.target
-    let top = img.parentNode
+  LoadData(filter) {
+    this.productService.Get(filter).subscribe((res: any) => {
 
-    const colorThief = new ColorThief()
+      this.produtos_l = []
+      this.produtos_r = []
 
-    let colors = colorThief.getPalette(img, 5)[2]
-    top.style.backgroundColor = `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`
+      res.map((p, i) => {
+        if (i % 2 == 0)
+          this.produtos_l.push(p)
+        else
+          this.produtos_r.push(p)
+      })
+    }, err => console.log(err))
   }
 
   Back() {

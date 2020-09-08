@@ -9,7 +9,7 @@ export class UserService {
   private _schema = 'user'
 
   private user: {
-    name: String,
+    nickname: String,
     email: String
   } = null
 
@@ -18,20 +18,20 @@ export class UserService {
     private connect: ConnectService
   ) { }
 
-  setUser(name, email) {
+  setUser(nickname, email) {
     this.user = {
-      name: name,
+      nickname: nickname,
       email: email
     }
 
     return this.SaveUser(name, email)
   }
 
-  SaveUser(name, email) {
+  SaveUser(nickname, email) {
     return this.connect.post(this._schema, {
-      nickname: name,
+      nickname: nickname,
       email: email,
-      anonymous: (name + email == "") ? true : false
+      anonymous: (nickname + email == "") ? true : false
     })
   }
 

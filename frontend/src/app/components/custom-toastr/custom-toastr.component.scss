@@ -1,0 +1,28 @@
+:host {
+    background-color: transparent !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin: 0 0 6px !important;
+    padding: 10px !important;
+    width: 100% !important;
+    border-radius: 5px !important;
+    color: #FFFFFF !important;
+    pointer-events: all !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+}
+
+.custom-toastr-wrapper {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 13px;
+
+    .message {
+        padding: 15px;
+        width: 100%;
+        background: #3ABB7B;
+        font-weight: 600;
+    }
+}

@@ -1,0 +1,9 @@
+<button (click)="click()" class="primary" [ngClass]="classes" [disabled]="disabledButton">
+    <div class="single" *ngIf="price == null">
+        {{label}}
+    </div>
+    <div class="multi" *ngIf="price != null">
+        <span class="label">{{label}}</span>
+        <span class="price">{{price}}</span>
+    </div>
+</button>

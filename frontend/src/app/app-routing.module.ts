@@ -9,6 +9,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ModalShoppingCartComponent } from './pages/modal-shopping-cart/modal-shopping-cart.component';
+import { ThankyouComponent } from './pages/thankyou/thankyou.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,13 @@ const routes: Routes = [
   {
     path: 'welcome',
     component: WelcomeComponent,
+    data: {
+      animation: 2
+    }
+  },
+  {
+    path: 'thankyou',
+    component: ThankyouComponent,
     data: {
       animation: 2
     }

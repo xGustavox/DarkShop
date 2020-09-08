@@ -17,7 +17,8 @@ export class WelcomeComponent implements OnInit {
     private userService: UserService
   ) 
   { 
-    this.userName = userService.getUser().name
+    this.userName = userService.getUser().nickname
+    this.GoShopping = this.GoShopping.bind(this)
   }
 
   ngOnInit(): void {

@@ -11,24 +11,17 @@ export class CardProductListComponent implements OnInit {
 
   @ViewChild('img') img
   @Input('product') product
+  @Input() darkPatterned: boolean = false
 
   constructor
   (
     private router: Router
   ) 
-  { 
-
-  }
+  { }
 
   ngOnInit(): void {
-  }
-
-  Teste(e) {
-    console.log(e.target.parentNode);
+    console.log(this.product);
     
-  }
-
-  ngAfterViewInit() {
   }
 
   SetBackColor(event) {
@@ -39,6 +32,8 @@ export class CardProductListComponent implements OnInit {
 
     let colors = colorThief.getPalette(img, 5)[2]
     top.style.backgroundColor = `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`
+
+    this.product = {...this.product, color: `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`}
   }
 
   Click() {

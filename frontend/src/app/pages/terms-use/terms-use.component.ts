@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-terms-use',
@@ -7,9 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TermsUseComponent implements OnInit {
 
-  constructor() { }
+  checkBoxes = {
+    termsAccepted: false,
+    helpResearch: true
+  }
+
+  constructor
+  (
+    private router: Router
+  ) 
+  { 
+    this.validateAndNavigate = this.validateAndNavigate.bind(this)
+    this.termsAccepted = this.termsAccepted.bind(this)
+    this.helpResearch = this.helpResearch.bind(this)
+  }
 
   ngOnInit(): void {
   }
 
+  validateAndNavigate() {
+    if (this.checkBoxes.termsAccepted && this.checkBoxes.helpResearch)
+      this.router.navigate(['tabs', 'home'])
+  }
+
+  termsAccepted(e) {
+    this.checkBoxes.termsAccepted = e.target.checked
+    
+  }
+
+  helpResearch(e) {
+    this.checkBoxes.helpResearch = e.target.checked
+  }
 }

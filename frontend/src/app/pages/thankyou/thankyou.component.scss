@@ -1,0 +1,84 @@
+.fix-area {
+    position: absolute;    
+    width: 100%;
+    height: 100%;
+}
+
+.benson-area, .info-area {
+    height: 50%;
+    color: #fff;
+}
+
+.benson-area {
+    position: relative;
+    background-color: #294D99;
+
+    .welcome-human {
+        padding-top: 30px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        text-align: center;
+
+        .hello {
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .welcome {
+            font-size: 15px;
+        }
+    }
+
+    .benson {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+
+        img {
+            position: absolute;
+            bottom: 35px;
+            height: 150px;
+            margin: auto;
+            left: 0;
+            right: 0;
+        }
+    }
+    .wall {
+        margin-left: 30px;
+        height: calc(100% - 70px);
+        width: calc(100% - 60px);
+        background-color: #4D80E6;
+    }
+
+    .floor {
+        border-bottom: 70px solid #315DB7;
+        border-left: 30px solid transparent;
+        border-right: 30px solid transparent;
+        height: 0;
+        width: 100%;
+    }
+}
+
+.info-area {
+    .quick-info {
+        margin: 40px 0;
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .how-does-it-works {
+        margin: 30px 0;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .go-shopping {
+        padding: 0 50px;
+
+        button {
+            font-size: 12px;
+            font-weight: 600;
+        }
+    }
+}

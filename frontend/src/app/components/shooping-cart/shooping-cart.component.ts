@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'shooping-cart',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ShoopingCartComponent implements OnInit {
 
+  @Input() darkPatterned: boolean = false
+
   qtdProducts
   price
   sale
@@ -16,29 +19,31 @@ export class ShoopingCartComponent implements OnInit {
   constructor
   (
     private shoppingCartService: ShoppingCartService,
-    private router: Router
+    private router: Router,
+    private loadingS: LoadingService
   ) 
   { 
     shoppingCartService.statusChanged.subscribe((data: any) => {
       this.sale = data
       this.RenderShoppingTag(data.products)
     })
+
+    this.CheckoutSale = this.CheckoutSale.bind(this)
+    
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  OpenShoppingCart() {
+    const modal = document.getElementById('shooping-modal')
+    modal.style.height = "98%"
+    document.body.style.overflow = "hidden"
   }
 
-  ToggleCart() {
-    let modal = document.getElementById('shooping-modal')
-    modal.classList.toggle('active')
-
-    if (modal.classList.contains('active')) {
-      setTimeout(() => {
-        modal.style.overflow = "auto"
-      }, 450)
-    }
-    else
-      modal.style.overflow = "hidden"
+  CloseShoppingCart() {
+    const modal = document.getElementById('shooping-modal')
+    modal.style.height = "0px"
+    document.body.style.overflow = "auto"
   }
 
   RenderShoppingTag(products) {
@@ -60,4 +65,15 @@ export class ShoopingCartComponent implements OnInit {
       this.shoppingCartService.Remove(i)
     }, 600)
   }
+
+  CheckoutSale() {
+    this.loadingS.show()
+
+    this.shoppingCartService.Checkout().subscribe(resp => {
+      this.loadingS.dismiss()
+      this.router.navigate(['thankyou'])
+    })
+  }
+
+  
 }

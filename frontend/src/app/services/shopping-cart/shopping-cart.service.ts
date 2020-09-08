@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subscriber, BehaviorSubject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { ConnectService } from '../connect/connect.service';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +18,26 @@ export class ShoppingCartService {
   
   statusChanged = new BehaviorSubject(null)
 
-  constructor() { }
+  constructor(
+    private toastr: ToastrService,
+    private conn: ConnectService,
+    private user: UserService
+  ) { }
 
   AddToCart(product) {
     this.sale.products.unshift(product)
     this.statusChanged.next(this.sale)
+    this.toastr.show('Produto adicionado na sacola!')
   }
 
   Remove(index) {
     this.sale.products.splice(index, 1)
     this.statusChanged.next(this.sale)
+  }
+
+  Checkout() {
+    this.sale = {...this.sale, user: this.user.getUser()}
+    
+    return this.conn.post("sale", this.sale)
   }
 }

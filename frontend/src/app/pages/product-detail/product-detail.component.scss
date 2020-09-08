@@ -1,73 +1,100 @@
-.title {
-    padding: 20px 10px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #fff;
-    text-align: center;
-
-    .exit {
-        float: left;
-        height: 57px;
-        width: 57px;
-        top: 0;
-        left: 0;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.wrapper-gradient {
+    height: 100vh;
+    background: #7b7b7b; /* Old browsers */
+    background: -moz-linear-gradient(top,  #7b7b7b 0%, #000000 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #7b7b7b 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #7b7b7b 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7b7b7b', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
 
-.info {
-    padding: 10px;
+.predominant-color {
+    width: 100%;
+    height: 100vh;
+    opacity: .6;
+    position: absolute;
+}
 
-    .product-image {
+.content {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+
+    .fixed-wrapper {
         width: 100%;
-        height: 300px;
-        border-radius: 25px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-        img {
-            height: 65%;
-        }
+        position: fixed;
     }
 
-    .desc {
-        margin-top: 20px;
-        margin-bottom: 5px;
-        font-size: 20px;
+    .back {
+        padding: 20px;
         color: #fff;
     }
 
-    .sub-desc {
-        margin-top: 5px;
-        margin-bottom: 10px;
-        font-size: 13px;
-        color: #686868;
-        font-weight: 600;
-    }
+    .product-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
 
-    .full-desc {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 13px;
-        color: #999999;
-    }
-
-    button {
-        margin-top: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-
-        .button-text {
-            float: left;
-            line-height: 27px;
+        img {
+            margin: 30px 0;
+            width: 60%;
         }
-        .price-text {
-            float: right;
-            font-size: 20px;
+
+        .name {
+            padding: 0 10%;
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .botao {
+            padding: 0 10%;
+            width: 100%;
+        }
+    }
+
+    .interesting-products {
+        width: 100%;
+        background-color: #0D0D0D;
+        margin-top: 501px;
+        position: absolute;
+        z-index: 1;
+        border-radius: 50px 50px 0 0;
+        padding: 10px 20px;
+        box-shadow: 7px -7px 10px rgba(0, 0, 0, .2);
+
+        .center {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 20px;
+
+            .grabber {
+                width: 60px;
+                height: 5px;
+                background-color: #373737;
+                border-radius: 100px;
+            }
+        }
+
+        .title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            padding-bottom: 20px;
+        }
+
+        .wrapper-cards-list {
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 50px;
+        }
+        
+        .column {
+            flex: 50%;
+            max-width: 50%;
+            padding: 0 5px;
         }
     }
 }
