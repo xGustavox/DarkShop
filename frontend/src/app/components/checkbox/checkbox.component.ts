@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'checkbox',
@@ -10,7 +11,7 @@ export class CheckboxComponent implements OnInit {
   @Input() label
   @Input() group
   @Input() checked = ""
-  @Input() darkPatterned = false
+  @Input() darkPatterned = environment.darkPatterned
   @Input() onChange
 
   constructor() { }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import ColorThief from 'colorthief'
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'card-product-list',
@@ -11,7 +12,7 @@ export class CardProductListComponent implements OnInit {
 
   @ViewChild('img') img
   @Input('product') product
-  @Input() darkPatterned: boolean = false
+  @Input() darkPatterned: boolean = environment.darkPatterned
 
   constructor
   (
@@ -19,10 +20,7 @@ export class CardProductListComponent implements OnInit {
   ) 
   { }
 
-  ngOnInit(): void {
-    console.log(this.product);
-    
-  }
+  ngOnInit(): void {}
 
   SetBackColor(event) {
     let img = event.target

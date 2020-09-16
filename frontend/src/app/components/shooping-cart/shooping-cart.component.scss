@@ -109,17 +109,23 @@
             .title {
                 font-size: 12px;
                 font-weight: 600;
-                margin-bottom: 15px;
+                margin-bottom: 5px;
+            }
+
+            .subtitle {
+                font-size: 10px;
+                color: #666666;
             }
 
             .list {
                 ul {
                     list-style: none;
+
                     li {
                         height: 50px;
                         position: relative;
                         font-size: 12px;
-                        margin-bottom: 15px;
+                        margin-top: 15px;
 
                         &.removing {
                             animation: remove .5s ease forwards;

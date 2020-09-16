@@ -32,14 +32,14 @@ export class FilterService {
     let filterProperty
 
     switch (filter) {
-      case 'from1to25': 
-        filterProperty = 'price'
+      case 'to25': 
+        filterProperty = 25
         break;
-      case 'from25to50': 
-      filterProperty = '-price'
+      case 'to50': 
+      filterProperty = 50
         break;
-      case 'from50to100': 
-        filterProperty = ''
+      case 'to100': 
+        filterProperty = 100
         break;
       case 'default': 
         filterProperty = ''
@@ -48,5 +48,7 @@ export class FilterService {
         filterProperty = ''
         break;
     }
+
+    return filterProperty
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { BlurService } from 'src/app/services/blur/blur.service';
 
 @Component({
   selector: 'nav-categories',
@@ -10,7 +11,9 @@ export class NavCategoriesComponent implements OnInit {
   type = 1
   @Output() categoryChange = new EventEmitter()
 
-  constructor() { }
+  constructor(
+    private blurService: BlurService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -22,5 +25,6 @@ export class NavCategoriesComponent implements OnInit {
     document.querySelector('.type' + this.type).classList.add('active')
 
     this.categoryChange.emit(category)
+    this.blurService.Blur()
   }
 }

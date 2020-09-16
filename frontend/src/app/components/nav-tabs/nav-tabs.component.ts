@@ -25,6 +25,7 @@ export class NavTabsComponent implements OnInit {
     shoppingCartService.statusChanged.subscribe((data: any) => {
       if (data)
         this.shoppingCartHasItens = data.products.length > 0
+        
     })
   }
 

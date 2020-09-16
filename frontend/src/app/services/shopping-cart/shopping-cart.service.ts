@@ -33,9 +33,14 @@ export class ShoppingCartService {
   Remove(index) {
     this.sale.products.splice(index, 1)
     this.statusChanged.next(this.sale)
+
+    if (this.sale.products.length == 0)
+      this.toastr.warning('Sua sacola esta vazia!')
   }
 
-  Checkout() {
+  Checkout(aditionalProducts: Product[]) {
+    this.sale.products.concat(aditionalProducts)
+
     this.sale = {...this.sale, user: this.user.getUser()}
     
     return this.conn.post("sale", this.sale)

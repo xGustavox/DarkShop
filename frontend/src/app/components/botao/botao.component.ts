@@ -16,8 +16,6 @@ export class BotaoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { 
-    console.log(this.price);
-    
   }
 
   click() {

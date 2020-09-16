@@ -15,7 +15,7 @@ export class ConnectService {
   ) 
   { }
 
-  get(schema, params) {
+  get(schema, params = {}) {
     return this._httpClient.get(this._url + schema, {
       params: params
     })

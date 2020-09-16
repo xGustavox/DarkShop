@@ -9,6 +9,9 @@ import { Toast, ToastrService, ToastPackage } from 'ngx-toastr';
 export class CustomToastrComponent extends Toast {
 
   constructor(toastrService: ToastrService, toastPackage: ToastPackage) { 
+    console.log(toastrService);
+    console.log(toastPackage);
+    
     super(toastrService, toastPackage);
   }
 

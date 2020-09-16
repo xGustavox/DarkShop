@@ -24,9 +24,9 @@ export class FilterComponent implements OnInit {
     {
       name: "Faixa de preço",
       filters: {
-        from1to25: "De R$ 1 até R$ 25",
-        from25to50: "De R$ 26 até R$ 50",
-        from50to100: "De R$ 51 até R$ 100",
+        to25: "Até R$ 25",
+        to50: "Até R$ 50",
+        to100: "Até R$ 100",
         default: "Limpar faixa de preço"
       }
     }
@@ -69,7 +69,7 @@ export class FilterComponent implements OnInit {
     this.filterToShow = null
     this.controllerState = -1
     document.getElementById("choice-ballon").classList.remove("active")
-
+    
     this.selected.emit(f)
   }
 }

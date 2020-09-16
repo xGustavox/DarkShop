@@ -1,17 +1,20 @@
 <div class="serach-input">
-    <input type="text" placeholder="Buscar produtos...">
+    <input #searchInput type="text" placeholder="Buscar produtos...">
     <div class="magnfying-glass">
         <span class="icon-search"></span>
     </div>
 </div>
 <div id="container" class="container padding">
-    <filter></filter>
-    <div class="wrapper-cards-list">
+    <filter (selected)="Filter($event)"></filter>
+    <div class="wrapper-cards-list" *ngIf="!pesquisaNaoEncontrada">
         <div class="column">
-            <card-product-list *ngFor="let p of produtos_l" [product]="p"></card-product-list>
+            <card-product-list *ngFor="let p of produtos_l" [product]="p" [darkPatterned]="false"></card-product-list>
         </div>
         <div class="column">
-            <card-product-list *ngFor="let p of produtos_r" [product]="p"></card-product-list>
+            <card-product-list *ngFor="let p of produtos_r" [product]="p" [darkPatterned]="false"></card-product-list>
         </div>
+    </div>
+    <div style="color: white;" *ngIf="pesquisaNaoEncontrada">
+        Não ncontramos o que você buscou...
     </div>
 </div>

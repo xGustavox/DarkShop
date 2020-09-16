@@ -1,3 +1,5 @@
+const { Router } = require('express')
+
 const Product = require('./product').Model
 
 Product.methods(['get', 'post', 'put', 'delete'])

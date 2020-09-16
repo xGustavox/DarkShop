@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:3366/api/'
+  url: 'http://localhost:3366/api/',
+  darkPatterned: true
 };
 
 /*

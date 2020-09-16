@@ -30,9 +30,13 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  LoadData(filter) {
+  LoadData(filter, priceFilter = null) {
     this.loadingS.show()
     this.productService.Get(filter).subscribe((res: any) => {
+
+      // Aplicação do filtro de preço temporário
+      if (priceFilter)
+        res = res.filter(item => item.price < priceFilter)
 
       this.produtos_l = []
       this.produtos_r = []
@@ -55,11 +59,15 @@ export class CategoriesComponent implements OnInit {
   }
 
   Filter(event) {
-    console.log(event);
     
-    this.LoadData({
-      type: this.type,
-      sort: this.filterService.Sort(event)
-    })
+    // O filtro de preço é feito localmente.
+    // Ainda não descobri como posso fazê-lo na API
+    this.LoadData(
+      {
+        type: this.type,
+        sort: this.filterService.Sort(event)
+      }, 
+      this.filterService.PriceRange(event)
+    )
   }
 }

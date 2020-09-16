@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/services/loading/loading.service';
+import { environment } from 'src/environments/environment';
+import { ProductsService } from 'src/app/services/products/products.service'
+import 'src/app/models/product'
 
 @Component({
   selector: 'shooping-cart',
@@ -10,17 +13,19 @@ import { LoadingService } from 'src/app/services/loading/loading.service';
 })
 export class ShoopingCartComponent implements OnInit {
 
-  @Input() darkPatterned: boolean = false
+  @Input() darkPatterned: boolean = environment.darkPatterned
 
   qtdProducts
-  price
+  price = 0
   sale
+  darkPatternedProducts = []
 
   constructor
   (
     private shoppingCartService: ShoppingCartService,
     private router: Router,
-    private loadingS: LoadingService
+    private loadingS: LoadingService,
+    private productService: ProductsService
   ) 
   { 
     shoppingCartService.statusChanged.subscribe((data: any) => {
@@ -33,6 +38,23 @@ export class ShoopingCartComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  GetAditionalProducts() {
+    let firstProductName: String[] = this.sale.products[0].name.split(' ')
+    let valueToCompareUppercase = `${firstProductName[0]} ${firstProductName[1]}`.toUpperCase()
+
+    return new Promise((resolve, reject) => {
+      this.productService.Get({}).subscribe((res: Product[]) => {
+
+        let relatedProductsArr = res.filter(item => 
+            item.name.toUpperCase().includes(valueToCompareUppercase) &&
+              !item.name.toUpperCase().includes(firstProductName.join(' ').toUpperCase())
+          )
+      
+        resolve(relatedProductsArr)
+      }, err => reject([]))
+    })
+  }
 
   OpenShoppingCart() {
     const modal = document.getElementById('shooping-modal')
@@ -47,33 +69,46 @@ export class ShoopingCartComponent implements OnInit {
   }
 
   RenderShoppingTag(products) {
-    this.qtdProducts = products.length
-    this.price = products.reduce((accumulator, currentValue) => {
+    this.GetAditionalProducts().then((res: Product[]) => {
+      let productArr = []
+      this.darkPatternedProducts = res
+
+      this.CalculateShoopingCartData(products)
+    }).catch(err => console.log('err'))
+  }
+
+  CalculateShoopingCartData(products) {
+    let productArr = [...products].concat([...this.darkPatternedProducts])
+  
+    this.qtdProducts = productArr.length
+    
+    this.price = productArr.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.price
     }, 0)
   }
 
-  Remove(e, i) {
-    console.log(e);
+  Remove(e, i, lista) {
     
-    const item = e.target.parentNode.parentNode
+    switch (lista) {
+      case 'products':
+        const item = e.target.parentNode.parentNode
 
-    item.classList.add('removing')
-
-    // Sincronia com a animação
-    setTimeout(() => {
-      this.shoppingCartService.Remove(i)
-    }, 600)
+        item.classList.add('removing')
+        this.shoppingCartService.Remove(i)
+        break;
+      case 'relatedProducts':
+        this.darkPatternedProducts.splice(i, 1)
+        this.CalculateShoopingCartData(this.sale.products)
+        break;
+    }
   }
 
   CheckoutSale() {
     this.loadingS.show()
 
-    this.shoppingCartService.Checkout().subscribe(resp => {
+    this.shoppingCartService.Checkout(this.darkPatternedProducts).subscribe(resp => {
       this.loadingS.dismiss()
       this.router.navigate(['thankyou'])
     })
-  }
-
-  
+  }  
 }

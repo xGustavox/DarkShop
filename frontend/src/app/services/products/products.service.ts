@@ -12,7 +12,6 @@ export class ProductsService {
   ) { }
 
   Get(filters) {
-
     let endPoint = "product"
 
     if (filters != {}) {

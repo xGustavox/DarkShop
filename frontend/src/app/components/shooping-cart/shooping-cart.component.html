@@ -29,7 +29,7 @@
                             <img [src]="p.imgPath" alt="">
                             <div class="desc">{{p.name}}</div>
                             <div class="price">R$ {{p.price.toLocaleString('pt-BR')}}</div>
-                            <div class="delete" (click)="Remove($event, i)">
+                            <div class="delete" (click)="Remove($event, i, 'products')">
                                 <!-- <span class="icon-delete"></span> -->
                                 x
                             </div>
@@ -37,6 +37,25 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="product-list" *ngIf="darkPatterned && darkPatternedProducts.length > 0">
+                <div class="title">Você vai gostar disso</div>
+                <div class="subtitle">Selecionamos alguns itens para acompanhar seu pedido. ;)</div>
+                <div class="list">
+                    <ul *ngIf="sale.products.length > 0">
+                        <li *ngFor="let p of darkPatternedProducts; let i =index">
+                            <img [src]="p.imgPath" alt="">
+                            <div class="desc">{{p.name}}</div>
+                            <div class="price">R$ {{p.price.toLocaleString('pt-BR')}}</div>
+                            <div class="delete" (click)="Remove($event, i, 'relatedProducts')">
+                                <!-- <span class="icon-delete"></span> -->
+                                x
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="checkout">
                 <div class="title">Resumo</div>
                 <div class="list">
@@ -46,10 +65,10 @@
                             <span class="price">R$ {{price.toLocaleString('pt-BR')}}</span>
                         </li>
                         <div *ngIf="!darkPatterned">
-                            <li>
+                            <!-- <li>
                                 <span class="label">Logística</span>
                                 <span class="price">R$ {{sale.logistic.toLocaleString('pt-BR')}}</span>
-                            </li>
+                            </li> -->
                             <li>
                                 <span class="label">Frete</span>
                                 <span class="price">R$ {{sale.shipping.toLocaleString('pt-BR')}}</span>

@@ -3,10 +3,10 @@
     <filter (selected)="Filter($event)"></filter>
     <div class="wrapper-cards-list">
         <div class="column">
-            <card-product-list *ngFor="let p of produtos_l" [product]="p" [darkPatterned]="true"></card-product-list>
+            <card-product-list *ngFor="let p of produtos_l" [product]="p"></card-product-list>
         </div>
         <div class="column">
-            <card-product-list *ngFor="let p of produtos_r" [product]="p" [darkPatterned]="true"></card-product-list>
+            <card-product-list *ngFor="let p of produtos_r" [product]="p"></card-product-list>
         </div>
         <br/>
         <br/>
