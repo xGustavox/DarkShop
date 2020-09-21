@@ -6,5 +6,6 @@ interface Product {
     bestSeller: Boolean,
     recentViewed: Boolean,
     stock: Number,
+    group: Number,
     createdAt: Date
 }

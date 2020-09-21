@@ -10,6 +10,7 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ModalShoppingCartComponent } from './pages/modal-shopping-cart/modal-shopping-cart.component';
 import { ThankyouComponent } from './pages/thankyou/thankyou.component';
+import { GroupDetailsComponent } from './pages/group-details/group-details.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,13 @@ const routes: Routes = [
         component: SearchComponent,
         data: {
           animation: 7
+        }
+      },
+      {
+        path: 'group_details',
+        component: GroupDetailsComponent,
+        data: {
+          animation: 9
         }
       },
       {

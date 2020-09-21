@@ -1,3 +1,3 @@
 <div id="container" class="container padding">
-    <product-group-card></product-group-card>
+    <product-group-card *ngFor="let groupProduct of groupProducts" [groupProduct]="groupProduct"></product-group-card>
 </div>

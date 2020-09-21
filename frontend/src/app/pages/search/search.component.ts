@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { fromEvent } from 'rxjs'
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
+import { BlurService } from 'src/app/services/blur/blur.service';
 import { ConnectService } from 'src/app/services/connect/connect.service';
 import { FilterService } from 'src/app/services/filter/filter.service';
 
@@ -27,7 +28,8 @@ export class SearchComponent implements OnInit {
   constructor
   (
     private conn: ConnectService, 
-    private filterService: FilterService
+    private filterService: FilterService,
+    private blurService: BlurService
   ) { 
     
   }
@@ -70,6 +72,8 @@ export class SearchComponent implements OnInit {
           else
             this.produtos_r.push(p)
         })
+
+        this.blurService.Blur()
   
         this.pesquisaNaoEncontrada = false
       }

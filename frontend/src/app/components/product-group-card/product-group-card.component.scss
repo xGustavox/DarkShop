@@ -5,11 +5,17 @@
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 15px;
+    position: relative;
+
+    &.no-border {
+        border-radius: 0;
+    }
 
     img {
         width: 100%;
         margin: 0;
         padding: 0;
+        display: block;
     }
 
     .basic-info {
@@ -19,13 +25,15 @@
         .title {
             text-transform: uppercase;
             color: #999;
-            font-size: 10px;
+            font-size: 11px;
+            font-weight: 600;
             margin-bottom: 10px;
         }
 
         .subtitle {
             font-size: 16px;
             color: white;
+            font-weight: 600;
         }
     }
 
@@ -41,5 +49,48 @@
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
         }
+    }
+
+    .over-img-text {display: none;}
+
+    &.over-img-text {
+        .over-img-text {
+            display: block;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+
+            .title {
+                font-size: 16px;
+                color: white;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+    
+            .subtitle {
+                text-transform: uppercase;
+                color: white;
+                font-size: 11px;
+            }
+        }
+
+        .basic-info {
+            display: none;
+        }
+    }
+}
+
+@keyframes imgBounce {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
     }
 }

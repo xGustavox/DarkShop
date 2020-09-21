@@ -9,6 +9,7 @@ const productSchema = new mongoose.Schema({
     bestSeller: {type: Boolean, required: false},
     recentViewed: {type: Boolean, required: false},
     stock: {type: Number, required: false},
+    group: {type: Number},
     createdAt: { type: Date, default: Date.now },
 })
 

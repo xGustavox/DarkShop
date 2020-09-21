@@ -10,6 +10,9 @@ module.exports = (server) => {
     const productService = require('./../api/product/productService')
     productService.register(router, '/product')
 
+    const productsGroupService = require('./../api/products_group/productsGroupService')
+    productsGroupService.register(router, '/products_group')
+
     const saleService = require('./../api/sale/saleService')
     saleService.register(router, '/sale')
 

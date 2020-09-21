@@ -7,6 +7,7 @@
     bottom: 0;
     color: #fff;
     transition: .2s ease-in-out;
+    z-index: 99;
 
     &.bluring {
         background-color: black;
@@ -18,7 +19,7 @@
         position: absolute;
         z-index: -2;
         overflow: hidden;
-
+        
         .canvas-wrapper {
             filter: blur(5px);
         }

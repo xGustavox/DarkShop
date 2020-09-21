@@ -22,12 +22,12 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { ShoopingCartComponent } from './components/shooping-cart/shooping-cart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
-import { ModalShoppingCartComponent } from './pages/modal-shopping-cart/modal-shopping-cart.component';
 import { BotaoComponent } from './components/botao/botao.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CustomToastrComponent } from './components/custom-toastr/custom-toastr.component';
 import { ThankyouComponent } from './pages/thankyou/thankyou.component';
+import { GroupDetailsComponent } from './pages/group-details/group-details.component';
 
 @NgModule({
   declarations: [
@@ -48,11 +48,11 @@ import { ThankyouComponent } from './pages/thankyou/thankyou.component';
     ProductDetailComponent,
     ShoopingCartComponent,
     LoadingComponent,
-    ModalShoppingCartComponent,
     BotaoComponent,
     CheckboxComponent,
     CustomToastrComponent,
-    ThankyouComponent
+    ThankyouComponent,
+    GroupDetailsComponent
   ],
   imports: [
     BrowserModule,

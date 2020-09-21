@@ -1,6 +1,5 @@
-<nav-categories (categoryChange)="ChangeCategory($event)"></nav-categories>
-<div id="container" class="container padding">
-    <filter (selected)="Filter($event)"></filter>
+<product-group-card [groupProduct]="groupProduct" [noBorder]="true"></product-group-card>
+<div class="group-itens">
     <div class="wrapper-cards-list">
         <div class="column">
             <card-product-list *ngFor="let p of produtos_l" [product]="p"></card-product-list>

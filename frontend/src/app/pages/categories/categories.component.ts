@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { LoadingService } from 'src/app/services/loading/loading.service';
 import { FilterService } from 'src/app/services/filter/filter.service';
+import { BlurService } from 'src/app/services/blur/blur.service';
 
 @Component({
   selector: 'app-categories',
@@ -19,7 +20,8 @@ export class CategoriesComponent implements OnInit {
   (
     private loadingS: LoadingService,
     private productService: ProductsService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private blurService: BlurService
   ) 
   {
     this.LoadData({

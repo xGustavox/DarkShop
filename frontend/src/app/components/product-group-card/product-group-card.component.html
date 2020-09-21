@@ -1,21 +1,15 @@
-<div class="product-group-card">
-    <img src="./../../../assets/imgs/hp.png" alt="">
+<div 
+#cardGroupCall 
+class="product-group-card" 
+[ngClass]="{'no-border': noBorder, 'over-img-text': (type == 2)}" 
+(click)="GoToGroup(groupProduct.groupId)">
+    <img [src]="groupProduct.imgPath" alt="">
+    <div class="over-img-text">
+        <div class="title">{{groupProduct.title}}</div>
+        <!-- <div class="subtitle">{{groupProduct.subtitle}}</div> -->
+    </div>
     <div class="basic-info">
-        <div class="title">A coleção que você ama</div>
-        <div class="subtitle">Escolha 3 livros que você quiser da saga Harry Potter</div>
+        <div class="title">{{groupProduct.title}}</div>
+        <div class="subtitle">{{groupProduct.subtitle}}</div>
     </div>
 </div>
-<div class="product-group-card">
-    <img src="./../../../assets/imgs/mufasa.png" alt="">
-</div>
-<div class="product-group-card overlay" style="background-color: #6917E5;">
-    <img src="./../../../assets/imgs/pops.png" alt="">
-    <div class="basic-info">
-        <div class="title">Os funkos também estão aqui</div>
-        <div class="subtitle">Funkos O Senhor dos Aneis</div>
-    </div>
-</div>
-<div class="product-group-card">
-    <img src="./../../../assets/imgs/gandalf.png" alt="">
-</div>
-<br><br><br><br><br><br>

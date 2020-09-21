@@ -1,19 +1,23 @@
 <div class="nav-tabs">
-    <div class="tab active home" routerLink="/tabs/home">
+    <div class="tab home" [ngClass]="{'active' : activatedTab.home}" routerLink="/tabs/home" (click)="ActivateTab('home')">
         <span class="icon-benson"></span>
         <div class="label">Inicio</div>
     </div>
-    <div class="tab categories" routerLink="/tabs/categories">
+    <div class="tab categories" [ngClass]="{'active' : activatedTab.categories}" routerLink="/tabs/categories" (click)="ActivateTab('categories')">
         <span class="icon-categorias"></span>
         <div class="label">Categorias</div>
     </div>
-    <div class="tab search" routerLink="/tabs/search">
+    <div class="tab search" [ngClass]="{'active' : activatedTab.search}" routerLink="/tabs/search" (click)="ActivateTab('search')">
         <span class="icon-search"></span>
         <div class="label">Pesquisa</div>
     </div>
     <div class="darken"></div>
+
+    <!-- Blur wrapper -->
     <div id="blur" class="blur">
-        <div id="canvas-wrapper" class="canvas-wrapper"></div>
+        <div class="blur-layer">
+            <div #canvasWrapper class="canvas-wrapper"></div>
+        </div>
     </div>
 </div>
 <shooping-cart *ngIf="shoppingCartHasItens"></shooping-cart>
