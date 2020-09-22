@@ -2,8 +2,8 @@
     <div class="predominant-color" [style.background-color]="product.color"></div>
     <div class="content">
         <div class="fixed-wrapper">
-            <div class="back">
-                < Back
+            <div class="back" (click)="Back()">
+                <span class="icon-arrow_left"></span>
             </div>
             <div class="product-info">
                 <img [src]="product.imgPath" alt="">

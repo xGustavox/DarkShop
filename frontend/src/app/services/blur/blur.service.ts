@@ -43,6 +43,8 @@ export class BlurService {
 
     setTimeout(() => {
       const contentToBlur = document.getElementById("container")
+      console.log(contentToBlur);
+      
 
       html2canvas(contentToBlur).then(canvas => {
         canvas.style.transition = '.1s ease-in-out'

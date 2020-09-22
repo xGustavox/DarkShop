@@ -28,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CustomToastrComponent } from './components/custom-toastr/custom-toastr.component';
 import { ThankyouComponent } from './pages/thankyou/thankyou.component';
 import { GroupDetailsComponent } from './pages/group-details/group-details.component';
+import { MosaicListComponent } from './components/mosaic-list/mosaic-list.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { GroupDetailsComponent } from './pages/group-details/group-details.compo
     CheckboxComponent,
     CustomToastrComponent,
     ThankyouComponent,
-    GroupDetailsComponent
+    GroupDetailsComponent,
+    MosaicListComponent
   ],
   imports: [
     BrowserModule,

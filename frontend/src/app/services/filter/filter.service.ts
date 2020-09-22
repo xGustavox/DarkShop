@@ -7,48 +7,27 @@ export class FilterService {
 
   constructor() { }
 
+  // Retorna o valor para ordenação baseado no filtro
   Sort(filter) {
-    let filterProperty
+    if (!filter)
+      return ''
 
-    switch (filter) {
-      case 'smallestPrice': 
-        filterProperty = 'price'
-        break;
-      case 'biggerPrice': 
-      filterProperty = '-price'
-        break;
-      case 'default': 
-        filterProperty = ''
-        break;
-      default:
-        filterProperty = ''
-        break;
-    }
-
-    return filterProperty
+    return {
+      smallestPrice: 'price',
+      biggerPrice: '-price',
+      default: ''
+    }[filter]
   }
 
   PriceRange(filter) {
-    let filterProperty
+    if (!filter)
+      return ''
 
-    switch (filter) {
-      case 'to25': 
-        filterProperty = 25
-        break;
-      case 'to50': 
-      filterProperty = 50
-        break;
-      case 'to100': 
-        filterProperty = 100
-        break;
-      case 'default': 
-        filterProperty = ''
-        break;
-      default:
-        filterProperty = ''
-        break;
-    }
-
-    return filterProperty
+    return {
+      to25: 25,
+      to50: 50,
+      to100: 100,
+      default: ''
+    }[filter]
   }
 }

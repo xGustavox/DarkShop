@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { ProductsService } from 'src/app/services/products/products.service';
+import { BlurService } from 'src/app/services/blur/blur.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -21,7 +22,8 @@ export class ProductDetailComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private blurService: BlurService
   ) 
   { 
     this.AddToCart = this.AddToCart.bind(this)

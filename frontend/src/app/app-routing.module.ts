@@ -8,7 +8,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-import { ModalShoppingCartComponent } from './pages/modal-shopping-cart/modal-shopping-cart.component';
 import { ThankyouComponent } from './pages/thankyou/thankyou.component';
 import { GroupDetailsComponent } from './pages/group-details/group-details.component';
 

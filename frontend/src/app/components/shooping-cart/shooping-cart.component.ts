@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/services/loading/loading.service';
@@ -13,6 +13,7 @@ import 'src/app/models/product'
 })
 export class ShoopingCartComponent implements OnInit {
 
+  @ViewChild('shoopingModal') shoopingModal: ElementRef
   @Input() darkPatterned: boolean = environment.darkPatterned
 
   qtdProducts
@@ -28,21 +29,53 @@ export class ShoopingCartComponent implements OnInit {
     private productService: ProductsService
   ) 
   { 
-    shoppingCartService.statusChanged.subscribe((data: any) => {
-      this.sale = data
-      this.RenderShoppingTag(data.products)
-    })
-
+    this.RenderShoppingCartSubscription()
     this.CheckoutSale = this.CheckoutSale.bind(this)
-    
   }
 
   ngOnInit(): void { }
 
+  /* Renderiza a tag resumo do shoppingCart quando 
+  houver uma atualização nos produtos do carrinho */
+  RenderShoppingCartSubscription() {
+    this.shoppingCartService.statusChanged.subscribe((data: any) => {
+      this.sale = data
+      this.RenderShoppingTag(data.products)
+    })
+  }
+
+  // Recupera os produtos relacionados
+  // Calcula os valores referentes aos produtos
+  RenderShoppingTag(products) {
+    this.GetAditionalProducts().then((res: Product[]) => {
+      let productArr = []
+      this.darkPatternedProducts = res
+
+      this.CalculateShoopingCartData(products)
+    }).catch(err => console.log('err'))
+  }
+
+  /* Calcula o preço total dos produtos inclusive 
+  os produtos adicionados pelo próprio App */
+  CalculateShoopingCartData(products) {
+    let productArr = [...products].concat([...this.darkPatternedProducts])
+  
+    this.qtdProducts = productArr.length
+    
+    this.price = productArr.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.price
+    }, 0)
+  }
+
+  /* Recupera os produtos relacionados baseado no primeiro 
+  produto adicionado no carrinho pelo usuário */
   GetAditionalProducts() {
+    // Recupera o nome do produto
     let firstProductName: String[] = this.sale.products[0].name.split(' ')
     let valueToCompareUppercase = `${firstProductName[0]} ${firstProductName[1]}`.toUpperCase()
 
+    /* Retorna um array com os produtos cujo os nomes 
+    combinam com os nomes dos outros produtos em estoque */
     return new Promise((resolve, reject) => {
       this.productService.Get({}).subscribe((res: Product[]) => {
 
@@ -56,39 +89,24 @@ export class ShoopingCartComponent implements OnInit {
     })
   }
 
+  // Abre a modal de checkout
   OpenShoppingCart() {
-    const modal = document.getElementById('shooping-modal')
+    const modal = this.shoopingModal.nativeElement
     modal.style.height = "98%"
     document.body.style.overflow = "hidden"
   }
 
+  // Fecha a modal de checkout
   CloseShoppingCart() {
-    const modal = document.getElementById('shooping-modal')
+    const modal = this.shoopingModal.nativeElement
     modal.style.height = "0px"
     document.body.style.overflow = "auto"
   }
 
-  RenderShoppingTag(products) {
-    this.GetAditionalProducts().then((res: Product[]) => {
-      let productArr = []
-      this.darkPatternedProducts = res
-
-      this.CalculateShoopingCartData(products)
-    }).catch(err => console.log('err'))
-  }
-
-  CalculateShoopingCartData(products) {
-    let productArr = [...products].concat([...this.darkPatternedProducts])
-  
-    this.qtdProducts = productArr.length
-    
-    this.price = productArr.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue.price
-    }, 0)
-  }
-
+  // Remove um item das listas de produtos
   Remove(e, i, lista) {
     
+    // Utiliza o switch para decidir de qual lista retirar o produto
     switch (lista) {
       case 'products':
         const item = e.target.parentNode.parentNode
@@ -103,6 +121,8 @@ export class ShoopingCartComponent implements OnInit {
     }
   }
 
+  /* Envia as informações para que a service 
+  faça o checkout e cadastre no banco */
   CheckoutSale() {
     this.loadingS.show()
 

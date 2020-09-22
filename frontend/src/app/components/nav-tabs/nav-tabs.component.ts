@@ -30,24 +30,38 @@ export class NavTabsComponent implements OnInit {
     private blurService: BlurService
   ) 
   { 
-    shoppingCartService.statusChanged.subscribe((data: any) => {
-      if (data)
-        this.shoppingCartHasItens = data.products.length > 0  
-    })
+    this.ShoppingCartStatus()
+    this.SyncRouteWithTab()
   }
 
   ngOnInit(): void {
     
   }
 
+  // Mostra o componente de ShoppingCart se ele tiver itens
+  ShoppingCartStatus() {
+    this.shoppingCartService.statusChanged.subscribe((data: any) => {
+      if (data)
+        this.shoppingCartHasItens = data.products.length > 0  
+    })
+  }
+
+  // Sincroniza o estilo tas tabs com a rota atual
+  SyncRouteWithTab() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        let endpointUrl = event.url.split('/')
+        this.ActivateTab(endpointUrl[2])
+      }
+    })
+  }
+
+  // Inicializa o blur das tabs
   ngAfterViewInit() {
     this.blurService.setCanvasWrapper(this.canvasWrapper)
   }
 
-  ToggleShoppingCart(show) {
-    this.shoppingCartHasItens = show
-  }
-
+  // Ativa o efeito de ativo nas tabs
   ActivateTab(tab) {
     this.activatedTab = {
       'home': false,

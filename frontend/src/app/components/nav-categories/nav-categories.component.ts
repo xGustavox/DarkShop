@@ -8,7 +8,7 @@ import { BlurService } from 'src/app/services/blur/blur.service';
 })
 export class NavCategoriesComponent implements OnInit {
 
-  type = 1
+  type = 1 // Tipo do grupo de produto
   @Output() categoryChange = new EventEmitter()
 
   constructor(
@@ -18,6 +18,8 @@ export class NavCategoriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /* Emite um evento com o tipo do grupo selecionado 
+  e seta os estilos ativos das tabs */
   Click(category) {
     this.type = category
 
@@ -25,6 +27,8 @@ export class NavCategoriesComponent implements OnInit {
     document.querySelector('.type' + this.type).classList.add('active')
 
     this.categoryChange.emit(category)
+    /* Necessário chamar o método para borrar as tabs por 
+    causa do conteúdo novo */
     this.blurService.Blur()
   }
 }

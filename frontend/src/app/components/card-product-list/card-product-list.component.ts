@@ -22,6 +22,8 @@ export class CardProductListComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /* Recupera a cor predominante da imagem do produto
+  e retorna o objeto produto com uma nova propriedade de cor */
   SetBackColor(event) {
     let img = event.target
     let top = img.parentNode
@@ -34,6 +36,7 @@ export class CardProductListComponent implements OnInit {
     this.product = {...this.product, color: `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`}
   }
 
+  // Navega para a tela de detalhes passando o produto como parametro
   Click() {
     this.router.navigate(['product-detail'], {
       queryParams: {

@@ -18,6 +18,7 @@ export class BotaoComponent implements OnInit {
   ngOnInit(): void { 
   }
 
+  // Executa o método passado como Input para o botão
   click() {
     if (this.onClick)
       this.onClick()

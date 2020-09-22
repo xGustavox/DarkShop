@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BlurService } from 'src/app/services/blur/blur.service';
 import { ProductsService } from 'src/app/services/products/products.service';
 
 @Component({
@@ -17,12 +18,12 @@ export class GroupDetailsComponent implements OnInit {
   constructor
   (
     private activatedRoute: ActivatedRoute,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private blurService: BlurService
   ) 
   {
     this.activatedRoute.queryParams.subscribe(res => {
       this.groupProduct = res
-      console.log(res);
     })
   }
 

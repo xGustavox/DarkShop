@@ -15,15 +15,15 @@ export class CategoriesComponent implements OnInit {
   type = 1
   produtos_l = []
   produtos_r = []
+  list
 
   constructor
   (
     private loadingS: LoadingService,
     private productService: ProductsService,
-    private filterService: FilterService,
-    private blurService: BlurService
+    private filterService: FilterService
   ) 
-  {
+  { 
     this.LoadData({
       type: this.type
     })
@@ -39,7 +39,7 @@ export class CategoriesComponent implements OnInit {
       // Aplicação do filtro de preço temporário
       if (priceFilter)
         res = res.filter(item => item.price < priceFilter)
-
+      
       this.produtos_l = []
       this.produtos_r = []
 

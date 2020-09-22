@@ -22,8 +22,7 @@ export class ProductsService {
         endPoint += `${f}=${filters[f]}${i < arrFilters.length ? '&' : ''}`
       })
     }
-console.log(endPoint);
-
+    
     return this.conn.get(endPoint, {})
   }
 }

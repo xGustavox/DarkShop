@@ -10,7 +10,6 @@ export class ProductGroupCardComponent implements OnInit {
 
   @Input('groupProduct') groupProduct
   @Input('noBorder') noBorder
-  @ViewChild('cardGroupCall') card: ElementRef;
 
   opened = false
   type = 1
@@ -25,6 +24,7 @@ export class ProductGroupCardComponent implements OnInit {
     this.type = this.groupProduct.type
   }
 
+  // Navega para a tela de detalhes do grupo passando o grupo como queryParam
   GoToGroup(groupId) {
     this.router.navigate(['tabs', 'group_details'], {
       queryParams: {

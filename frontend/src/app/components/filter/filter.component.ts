@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { BlurService } from 'src/app/services/blur/blur.service';
 
 @Component({
   selector: 'filter',
@@ -7,9 +8,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
 
+  @ViewChild('choiceBallon') choiceBallon: ElementRef
   @Output() selected = new EventEmitter()
+
   selectedFilter
   controllerState
+  // Array of filters
   filterToShow = null
   filters = [
     {
@@ -17,7 +21,6 @@ export class FilterComponent implements OnInit {
       filters: {
         smallestPrice: "Menor preço",
         biggerPrice: "Maior preço",
-        // author: "Autor",
         default: "Limpar ordenação"
       },
     },
@@ -32,15 +35,21 @@ export class FilterComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(
+    private blurService: BlurService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  // Abre os filtros com as opçoes corretas e controla seu posicionamento na tela
+  // e -> Click event
+  // controller -> Indice dos filtros no array filters
   OpenOptions(e, controller) {
     this.selectedFilter = e.target
-    let offLeft = e.target.getBoundingClientRect().left;
-    let choiceBallon = document.getElementById("choice-ballon")
+
+    const offLeft = this.selectedFilter.getBoundingClientRect().left;
+    const choiceBallon = this.choiceBallon.nativeElement
     
     if (controller == this.controllerState) {
       choiceBallon.classList.remove("active")
@@ -56,20 +65,29 @@ export class FilterComponent implements OnInit {
     }
   }
 
+  // Emite o evento passando como valor a chave do array de filtros
   AplyFilter(f) {
     if (f != 'default') {
+      // Aplica a classe active no botão com filtro ativo
       this.selectedFilter.classList.add("active")
+      // Aplica o nome do filtro no botão
       this.selectedFilter.innerHTML = this.filters[this.controllerState].filters[f]
     }
     else {
+      // Limap aformatação do botão para o padrão
       this.selectedFilter.classList.remove("active")
       this.selectedFilter.innerHTML = this.filters[this.controllerState].name
     }
 
+    this.ResetFilterState()
+    // Emite o nome do filtro selecionado
+    this.selected.emit(f)
+    this.blurService.Blur()
+  }
+
+  ResetFilterState() {
     this.filterToShow = null
     this.controllerState = -1
-    document.getElementById("choice-ballon").classList.remove("active")
-    
-    this.selected.emit(f)
+    this.choiceBallon.nativeElement.classList.remove("active")
   }
 }
