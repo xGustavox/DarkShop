@@ -1,8 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import html2canvas from 'html2canvas';
 import { Router, NavigationEnd } from '@angular/router';
-import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
-import { BlurService } from 'src/app/services/blur/blur.service';
+import { ShoppingCartService } from 'src/app/core/services/shopping-cart/shopping-cart.service';
+import { BlurService } from 'src/app/core/services/blur/blur.service';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class NavTabsComponent implements OnInit {
   activatedTab = {
     'home': true,
     'categories': false,
-    'search': false
+    'search': false 
   }
 
   bluring = false

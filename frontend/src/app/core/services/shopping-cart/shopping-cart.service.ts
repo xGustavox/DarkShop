@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subscriber, BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { ConnectService } from '../connect/connect.service';
-import { UserService } from '../user/user.service';
+import { ConnectService } from './../connect/connect.service';
+import { UserService } from './../user/user.service';
 
 @Injectable({
   providedIn: 'root'

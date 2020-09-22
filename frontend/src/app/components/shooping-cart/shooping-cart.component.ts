@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
-import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/core/services/shopping-cart/shopping-cart.service';
 import { Router } from '@angular/router';
-import { LoadingService } from 'src/app/services/loading/loading.service';
+import { LoadingService } from 'src/app/core/services/loading/loading.service';
 import { environment } from 'src/environments/environment';
-import { ProductsService } from 'src/app/services/products/products.service'
-import 'src/app/models/product'
+import { ProductsService } from 'src/app/core/services/products/products.service'
+import 'src/app/shared/models/product'
 
 @Component({
   selector: 'shooping-cart',

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/services/products/products.service';
-import { LoadingService } from 'src/app/services/loading/loading.service';
-import { FilterService } from 'src/app/services/filter/filter.service';
-import { BlurService } from 'src/app/services/blur/blur.service';
+import { ProductsService } from 'src/app/core/services/products/products.service';
+import { LoadingService } from 'src/app/core/services/loading/loading.service';
+import { FilterService } from 'src/app/core/services/filter/filter.service';
 
 @Component({
   selector: 'app-categories',

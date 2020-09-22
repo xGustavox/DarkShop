@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
-import { ProductsService } from 'src/app/services/products/products.service';
-import { BlurService } from 'src/app/services/blur/blur.service';
+import { ShoppingCartService } from 'src/app/core/services/shopping-cart/shopping-cart.service';
+import { ProductsService } from 'src/app/core/services/products/products.service';
+import { BlurService } from 'src/app/core/services/blur/blur.service';
 
 @Component({
   selector: 'app-product-detail',

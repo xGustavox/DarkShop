@@ -1,5 +1,5 @@
 import { Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef } from '@angular/core';
-import { LoadingComponent } from 'src/app/components/loading/loading.component';
+import { LoadingComponent } from './../../../shared/components/loading/loading.component';
 
 @Injectable({
   providedIn: 'root'

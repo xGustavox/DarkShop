@@ -13,22 +13,21 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductGroupCardComponent } from './components/product-group-card/product-group-card.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { SearchComponent } from './pages/search/search.component';
-import { NavTabsComponent } from './components/nav-tabs/nav-tabs.component';
+import { NavTabsComponent } from './core/components/nav-tabs/nav-tabs.component';
 import { TabsComponent } from './pages/tabs/tabs.component';
 import { NavCategoriesComponent } from './components/nav-categories/nav-categories.component';
-import { FilterComponent } from './components/filter/filter.component';
+import { FilterComponent } from './shared/components/filter/filter.component';
 import { CardProductListComponent } from './components/card-product-list/card-product-list.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ShoopingCartComponent } from './components/shooping-cart/shooping-cart.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LoadingComponent } from './components/loading/loading.component';
-import { BotaoComponent } from './components/botao/botao.component';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { LoadingComponent } from './shared/components/loading/loading.component';
+import { BotaoComponent } from './shared/components/botao/botao.component';
+import { CheckboxComponent } from './shared/components/checkbox/checkbox.component';
 import { ToastrModule } from 'ngx-toastr';
-import { CustomToastrComponent } from './components/custom-toastr/custom-toastr.component';
+import { CustomToastrComponent } from './shared/components/custom-toastr/custom-toastr.component';
 import { ThankyouComponent } from './pages/thankyou/thankyou.component';
 import { GroupDetailsComponent } from './pages/group-details/group-details.component';
-import { MosaicListComponent } from './components/mosaic-list/mosaic-list.component';
 
 @NgModule({
   declarations: [
@@ -53,8 +52,7 @@ import { MosaicListComponent } from './components/mosaic-list/mosaic-list.compon
     CheckboxComponent,
     CustomToastrComponent,
     ThankyouComponent,
-    GroupDetailsComponent,
-    MosaicListComponent
+    GroupDetailsComponent
   ],
   imports: [
     BrowserModule,

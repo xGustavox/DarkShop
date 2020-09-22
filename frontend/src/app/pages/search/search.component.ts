@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { fromEvent } from 'rxjs'
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
-import { BlurService } from 'src/app/services/blur/blur.service';
-import { ConnectService } from 'src/app/services/connect/connect.service';
-import { FilterService } from 'src/app/services/filter/filter.service';
+import { BlurService } from 'src/app/core/services/blur/blur.service';
+import { ConnectService } from 'src/app/core/services/connect/connect.service';
+import { FilterService } from 'src/app/core/services/filter/filter.service';
 
 @Component({
   selector: 'app-search',

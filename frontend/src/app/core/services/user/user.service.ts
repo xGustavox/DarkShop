@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ConnectService } from '../connect/connect.service';
+import { ConnectService } from './../connect/connect.service';
 
 @Injectable({
   providedIn: 'root'

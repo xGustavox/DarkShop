@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { BlurService } from 'src/app/services/blur/blur.service';
+import { BlurService } from 'src/app/core/services/blur/blur.service';
 
 @Component({
   selector: 'filter',

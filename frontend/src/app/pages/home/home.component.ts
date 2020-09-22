@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BlurService } from 'src/app/services/blur/blur.service';
-import { ConnectService } from 'src/app/services/connect/connect.service';
+import { BlurService } from 'src/app/core/services/blur/blur.service';
+import { ConnectService } from 'src/app/core/services/connect/connect.service';
 
 @Component({
   selector: 'app-home',

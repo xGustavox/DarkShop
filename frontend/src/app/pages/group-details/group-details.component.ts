@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BlurService } from 'src/app/services/blur/blur.service';
-import { ProductsService } from 'src/app/services/products/products.service';
+import { BlurService } from 'src/app/core/services/blur/blur.service';
+import { ProductsService } from 'src/app/core/services/products/products.service';
 
 @Component({
   selector: 'app-group-details',
