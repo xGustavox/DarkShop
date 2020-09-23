@@ -39,8 +39,10 @@ export class ShoopingCartComponent implements OnInit {
   houver uma atualização nos produtos do carrinho */
   RenderShoppingCartSubscription() {
     this.shoppingCartService.statusChanged.subscribe((data: any) => {
-      this.sale = data
-      this.RenderShoppingTag(data.products)
+      if (data) {
+        this.sale = data
+        this.RenderShoppingTag(data.products)
+      }
     })
   }
 
@@ -57,14 +59,23 @@ export class ShoopingCartComponent implements OnInit {
 
   /* Calcula o preço total dos produtos inclusive 
   os produtos adicionados pelo próprio App */
-  CalculateShoopingCartData(products) {
+  CalculateShoopingCartData(products) { 
     let productArr = [...products].concat([...this.darkPatternedProducts])
-  
-    this.qtdProducts = productArr.length
-    
-    this.price = productArr.reduce((accumulator, currentValue) => {
+
+    this.qtdProducts = this.GetNumProducts(productArr)
+    this.price = this.SumProductsPrice(productArr)
+  }
+
+  GetNumProducts(products: any[] = []) {
+    return products.length
+  }
+
+  SumProductsPrice(products: any[] = []) {
+    let sum = products.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.price
     }, 0)
+
+    return sum
   }
 
   /* Recupera os produtos relacionados baseado no primeiro 
