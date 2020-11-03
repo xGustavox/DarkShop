@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { BlurService } from 'src/app/core/services/blur/blur.service';
 import { ProductsService } from 'src/app/core/services/products/products.service';
@@ -19,9 +20,14 @@ export class GroupDetailsComponent implements OnInit {
   (
     private activatedRoute: ActivatedRoute,
     private productService: ProductsService,
-    private blurService: BlurService
+    private blurService: BlurService,
+    private title: Title
   ) 
   {
+    alert(JSON.stringify(this.groupProduct))
+
+    title.setTitle(this.groupProduct.name)
+
     this.activatedRoute.queryParams.subscribe(res => {
       this.groupProduct = res
     })

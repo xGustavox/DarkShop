@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user/user.service';
 
@@ -14,10 +15,18 @@ export class WelcomeComponent implements OnInit {
   constructor
   (
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private title: Title
   ) 
   { 
-    this.userName = userService.getUser().nickname
+    title.setTitle('Bem vindo!')
+    const user: any = userService.getUser()
+
+    if (user.anonymous)
+      this.userName = 'Humano'
+    else
+      this.userName = user.nickname
+
     this.GoShopping = this.GoShopping.bind(this)
   }
 

@@ -3,6 +3,7 @@ import { Subscriber, BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { ConnectService } from './../connect/connect.service';
 import { UserService } from './../user/user.service';
+import { NaggingService } from '../nagging/nagging.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +22,12 @@ export class ShoppingCartService {
   constructor(
     private toastr: ToastrService,
     private conn: ConnectService,
-    private user: UserService
+    private user: UserService,
+    private naggingService: NaggingService,
   ) { }
 
   AddToCart(product) {
+    this.naggingService.AddedTheProduct(product)
     this.sale.products.unshift(product)
     this.statusChanged.next(this.sale)
     this.toastr.show('Produto adicionado na sacola!')

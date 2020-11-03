@@ -28,6 +28,19 @@ button {
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b73131', endColorstr='#b73131',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     }
 
+    &.stroke {
+        background: transparent !important;
+        border: 1px solid #fff;
+        color: #fff;
+    }
+
+    &.small {
+        height: 35px;
+        padding: 0;
+        font-size: 10px;
+        line-height: 10px;
+    }
+
     &:disabled {
         background: $disable_gray;
     }

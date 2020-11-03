@@ -24,4 +24,12 @@ export class ConnectService {
   post(schema, body) {
     return this._httpClient.post(this._url + schema, body)
   }
+
+  put (schema, body) {
+    return this._httpClient.put(this._url + schema, body)
+  }
+
+  delete(schema, id) {
+    return this._httpClient.delete(this._url + schema + id)
+  }
 }

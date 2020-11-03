@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { LoadingService } from 'src/app/core/services/loading/loading.service';
 import { FilterService } from 'src/app/core/services/filter/filter.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-categories',
@@ -20,9 +21,13 @@ export class CategoriesComponent implements OnInit {
   (
     private loadingS: LoadingService,
     private productService: ProductsService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private title: Title
+    
   ) 
   { 
+    title.setTitle('Categorias')
+
     this.LoadData({
       type: this.type
     })

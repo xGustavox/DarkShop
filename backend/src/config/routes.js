@@ -18,4 +18,7 @@ module.exports = (server) => {
 
     const ui_flowService = require('./../api/ui_flow/ui_flowService')
     ui_flowService.register(router, '/ui_flow')
+
+    const website_configService = require('./../api/website_config/website_configService')
+    website_configService.register(router, '/website_config')
 }

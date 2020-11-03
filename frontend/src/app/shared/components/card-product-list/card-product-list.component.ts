@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import ColorThief from 'colorthief'
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
+import { NaggingService } from 'src/app/core/services/nagging/nagging.service';
 
 @Component({
   selector: 'card-product-list',
@@ -12,13 +13,18 @@ export class CardProductListComponent implements OnInit {
 
   @ViewChild('img') img
   @Input('product') product
-  @Input() darkPatterned: boolean = environment.darkPatterned
+  // @Input() darkPatterned = false
+  @Input() darkPatterned = JSON.parse(localStorage.getItem('darkPatterned')).darkPatterned
 
   constructor
   (
-    private router: Router
+    private router: Router,
+    private gtmService: GoogleTagManagerService,
+    private nagging: NaggingService
   ) 
-  { }
+  { 
+    
+  }
 
   ngOnInit(): void {}
 
@@ -29,15 +35,26 @@ export class CardProductListComponent implements OnInit {
     let top = img.parentNode
 
     const colorThief = new ColorThief()
+    const colors = colorThief.getPalette(img, 5)
 
-    let colors = colorThief.getPalette(img, 5)[2]
-    top.style.backgroundColor = `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`
+    let color1 = colors[2]
+    let color2 = colors[3]
+    
+    let leftTopColor = `rgb(${color1[0]}, ${color1[1]}, ${color1[2]})`
+    let bottomRightColor = `rgb(${color2[0]}, ${color2[1]}, ${color2[2]})`
+    
+    const gradiente = `linear-gradient(to bottom right, ${leftTopColor}, ${bottomRightColor})`
 
-    this.product = {...this.product, color: `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`}
+    top.style.backgroundImage = gradiente
+
+    this.product = {...this.product, color: gradiente}
   }
 
   // Navega para a tela de detalhes passando o produto como parametro
   Click() {
+
+    this.nagging.setProduct(this.product)
+
     this.router.navigate(['product-detail'], {
       queryParams: {
         product: JSON.stringify(this.product)

@@ -9,7 +9,7 @@ export class BlurService {
 
   canvasWrapper: ElementRef
 
-  constructor(private router: Router) {
+  constructor(private router: Router) { 
   }
 
   setCanvasWrapper(canvasWrapper) {
@@ -43,18 +43,18 @@ export class BlurService {
 
     setTimeout(() => {
       const contentToBlur = document.getElementById("container")
-      console.log(contentToBlur);
-      
 
-      html2canvas(contentToBlur).then(canvas => {
-        canvas.style.transition = '.1s ease-in-out'
-        canvas.style.opacity = '0'
-
-        this.canvasWrapper.nativeElement.append(canvas)
-        this.canvasWrapper.nativeElement.style.transform = `translateY(-${(window.innerHeight - 70)}px)`
-
-        canvas.style.opacity = '1'
-      })
+      if (contentToBlur) {
+        html2canvas(contentToBlur).then(canvas => {
+          canvas.style.transition = '.1s ease-in-out'
+          canvas.style.opacity = '0'
+  
+          this.canvasWrapper.nativeElement.append(canvas)
+          this.canvasWrapper.nativeElement.style.transform = `translateY(-${(window.innerHeight - 70)}px)`
+  
+          canvas.style.opacity = '1'
+        })
+      }
     }, 500)
 
     this.SyncCanvasWithScroll()

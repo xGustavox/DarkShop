@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { BlurService } from 'src/app/core/services/blur/blur.service';
 import { ConnectService } from 'src/app/core/services/connect/connect.service';
 
@@ -13,14 +14,15 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private conn: ConnectService,
-    private blurService: BlurService
+    private blurService: BlurService,
+    private title: Title
   ) 
-  { }
+  { 
+    title.setTitle('DarkShop')
+  }
 
   ngOnInit(): void {
     this.conn.get('products_group', {}).subscribe((res: any) => {
-      console.log(res);
-      
       this.groupProducts = res
     })
   }

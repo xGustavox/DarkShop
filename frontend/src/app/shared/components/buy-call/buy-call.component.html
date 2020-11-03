@@ -1,0 +1,17 @@
+<div class="buy-call" [ngClass]="{'active': active}">
+    <div #buyCall class="content-wrapper">
+        <div class="img">
+            <img [src]="product.imgPath" alt="">
+        </div>
+        <div class="info">
+            <div class="name">{{product.name}}</div>
+            <div class="add-cart">
+                <botao
+                    [label]="'Adicionar ao carrinho'"
+                    [price]="product.price"
+                    [classes]="'stroke small'"
+                ></botao>
+            </div>
+        </div>
+    </div>
+</div>

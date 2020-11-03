@@ -1,6 +1,6 @@
 <div class="wrapper-gradient">
-    <div class="predominant-color" [style.background-color]="product.color"></div>
-    <div class="content">
+    <div #predominantColor class="predominant-color" ></div>
+    <div #content class="content">
         <div class="fixed-wrapper">
             <div class="back" (click)="Back()">
                 <span class="icon-arrow_left"></span>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="interesting-products">
+        <div class="interesting-products" *ngIf="produtos_l.length + produtos_r.length > 0">
             <div class="center">
                 <div class="grabber"></div>
             </div>
@@ -37,3 +37,4 @@
         </div>
     </div>
 </div>
+<buy-call [active]="false" [product]="product"></buy-call>

@@ -16,7 +16,7 @@
                 <button type="button" class="primary" (click)="Login()" [disabled]="!loginForm.valid">Entrar no DarkShoop</button>
             </form>
         </div>
-        <div class="other">
+        <div class="other" (click)="LoginNoInfo()">
             Entrar sem informar mes dados
         </div>
     </div>

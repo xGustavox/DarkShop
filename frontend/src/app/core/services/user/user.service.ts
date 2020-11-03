@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConnectService } from './../connect/connect.service';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class UserService {
 
   private user: {
     nickname: String,
-    email: String
+    email: String,
+    anonymous: Boolean
   } = null
 
   constructor
@@ -21,18 +23,41 @@ export class UserService {
   setUser(nickname, email) {
     this.user = {
       nickname: nickname,
-      email: email
+      email: email,
+      anonymous: false
     }
 
     return this.SaveUser(name, email)
   }
 
-  SaveUser(nickname, email) {
-    return this.connect.post(this._schema, {
-      nickname: nickname,
-      email: email,
-      anonymous: (nickname + email == "") ? true : false
+  setAnonimousUser() {
+    this.user = {
+      nickname: "",
+      email: "",
+      anonymous: true
+    }
+  }
+
+  UserExists(email) {
+    return new Promise((resolve, reject) => {
+      this.connect.get(`user`, {email}).subscribe((res: any[]) => {
+        resolve(res.length ? res[0] : false)
+      }, err => resolve(false))
     })
+  }
+
+  async SaveUser(nickname, email) {
+    const userExists = await this.UserExists(email)
+
+    if (!userExists) {
+      return this.connect.post(this._schema, {
+        nickname: nickname,
+        email: email
+      })
+    }
+    else {
+      return of(userExists)
+    }
   }
 
   Get(email) {

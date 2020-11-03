@@ -1,0 +1,23 @@
+<div class="backdrop">
+    <div class="modal">
+        <div #top class="top">
+            <img [src]="product.imgPath" alt="">
+        </div>
+        <div class="info">
+            <div class="message">
+                {{peopleLooking}} pessoas estão de olho nesse produto...
+            </div>
+            <div class="ver-produto">
+                <botao
+                    [label]="'Ver produto'"
+                    [classes]="'primary uppercase'"
+                    [onClick]="SeeProduct">
+                </botao>
+            </div>
+            <div class="nao-obrigado" (click)='NotInterested()'>
+                Não obrigado, vou deixar essa passar.
+            </div>
+        </div>
+    </div>
+</div>
+

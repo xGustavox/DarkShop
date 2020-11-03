@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,9 +16,11 @@ export class TermsUseComponent implements OnInit {
 
   constructor
   (
-    private router: Router
+    private router: Router,
+    private title: Title
   ) 
   { 
+    title.setTitle('Termos de uso')
     this.validateAndNavigate = this.validateAndNavigate.bind(this)
     this.termsAccepted = this.termsAccepted.bind(this)
     this.helpResearch = this.helpResearch.bind(this)

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { fromEvent } from 'rxjs'
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
 import { BlurService } from 'src/app/core/services/blur/blur.service';
@@ -29,9 +30,11 @@ export class SearchComponent implements OnInit {
   (
     private conn: ConnectService, 
     private filterService: FilterService,
-    private blurService: BlurService
-  ) { 
-    
+    private blurService: BlurService,
+    private title: Title
+  ) 
+  { 
+    title.setTitle('Pesquisa')
   }
 
   ngOnInit(): void {

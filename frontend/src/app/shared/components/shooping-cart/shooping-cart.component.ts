@@ -14,7 +14,7 @@ import 'src/app/shared/models/product'
 export class ShoopingCartComponent implements OnInit {
 
   @ViewChild('shoopingModal') shoopingModal: ElementRef
-  @Input() darkPatterned: boolean = environment.darkPatterned
+  @Input() darkPatterned = JSON.parse(localStorage.getItem('darkPatterned')).darkPatterned
 
   qtdProducts
   price = 0
@@ -50,7 +50,6 @@ export class ShoopingCartComponent implements OnInit {
   // Calcula os valores referentes aos produtos
   RenderShoppingTag(products) {
     this.GetAditionalProducts().then((res: Product[]) => {
-      let productArr = []
       this.darkPatternedProducts = res
 
       this.CalculateShoopingCartData(products)
@@ -88,6 +87,10 @@ export class ShoopingCartComponent implements OnInit {
     /* Retorna um array com os produtos cujo os nomes 
     combinam com os nomes dos outros produtos em estoque */
     return new Promise((resolve, reject) => {
+
+      if (!this.darkPatterned)
+        resolve([])
+
       this.productService.Get({}).subscribe((res: Product[]) => {
 
         let relatedProductsArr = res.filter(item => 

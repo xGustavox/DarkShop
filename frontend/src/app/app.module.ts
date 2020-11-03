@@ -28,6 +28,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { CustomToastrComponent } from './shared/components/custom-toastr/custom-toastr.component';
 import { ThankyouComponent } from './pages/thankyou/thankyou.component';
 import { GroupDetailsComponent } from './pages/group-details/group-details.component';
+import { environment } from 'src/environments/environment';
+import { GoogleTagManagerModule } from 'angular-google-tag-manager';
+import { NaggingModalComponent } from './shared/components/nagging-modal/nagging-modal.component';
+import { BuyCallComponent } from './shared/components/buy-call/buy-call.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +56,9 @@ import { GroupDetailsComponent } from './pages/group-details/group-details.compo
     CheckboxComponent,
     CustomToastrComponent,
     ThankyouComponent,
-    GroupDetailsComponent
+    GroupDetailsComponent,
+    NaggingModalComponent,
+    BuyCallComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +68,9 @@ import { GroupDetailsComponent } from './pages/group-details/group-details.compo
     HttpClientModule,
     ToastrModule.forRoot({
       toastComponent: CustomToastrComponent
+    }),
+    GoogleTagManagerModule.forRoot({
+      id: environment.gtm_id,
     })
   ],
   providers: [],

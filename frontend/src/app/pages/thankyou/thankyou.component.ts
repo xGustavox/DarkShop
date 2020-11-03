@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +9,13 @@ import { Router } from '@angular/router';
 })
 export class ThankyouComponent implements OnInit {
 
-  constructor(private router: Router) { 
+  constructor
+  (
+    private router: Router,
+    private title: Title
+  ) 
+  { 
+    title.setTitle('Obrigado!')
     this.Voltar = this.Voltar.bind(this)
   }
 
