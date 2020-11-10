@@ -5,6 +5,9 @@
         <div class="triangle"></div>
     </div>
     <div id="top_{{product.id}}" class="top gtm-product-card">
+        <!-- <div class="loading-skeleton" *ngIf="!loadedImg">
+            <img src="/assets/imgs/loading.svg" alt="">
+        </div> -->
         <img class="img" [src]="product.imgPath" alt="" (load)="SetBackColor($event)">
     </div>
     <div class="info gtm-product-card">

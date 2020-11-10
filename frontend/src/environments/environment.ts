@@ -6,8 +6,7 @@ export const environment = {
   production: false,
   url: 'http://localhost:3000/api/',
   darkPatterned: false,
-  gtm_id: 'GTM-54J3C47',
-  ga_metric: 'G-T9GLBHQF65'
+  gtm_id: 'GTM-54J3C47'
 };
 
 /*

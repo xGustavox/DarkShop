@@ -17,6 +17,7 @@ export class NaggingService {
   ) { }
 
   InitializeNaggingTimer() {
+    const NAGGING_COUNTDOWN = 60000
     let i = 0
 
     let naggingLoop = setInterval(() => {
@@ -30,7 +31,7 @@ export class NaggingService {
         localStorage.removeItem(localStorageKeys.naggingProduct)
         clearInterval(naggingLoop)
       }
-    }, 90000)
+    }, NAGGING_COUNTDOWN)
   }
 
   NotInterested() {
@@ -57,7 +58,8 @@ export class NaggingService {
   AddedTheProduct(addedProductId) {
     const product: any = localStorage.getItem(localStorageKeys.naggingProduct)
 
-    if (product._id == addedProductId)
-      localStorage.removeItem(localStorageKeys.naggingProduct)
+    if (product)
+      if (product._id == addedProductId)
+        localStorage.removeItem(localStorageKeys.naggingProduct)
   }
 }

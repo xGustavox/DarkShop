@@ -15,6 +15,7 @@ export class CardProductListComponent implements OnInit {
   @Input('product') product
   // @Input() darkPatterned = false
   @Input() darkPatterned = JSON.parse(localStorage.getItem('darkPatterned')).darkPatterned
+  loadedImg = false
 
   constructor
   (
@@ -31,12 +32,13 @@ export class CardProductListComponent implements OnInit {
   /* Recupera a cor predominante da imagem do produto
   e retorna o objeto produto com uma nova propriedade de cor */
   SetBackColor(event) {
+    this.loadedImg = true
     let img = event.target
     let top = img.parentNode
 
     const colorThief = new ColorThief()
     const colors = colorThief.getPalette(img, 5)
-
+ 
     let color1 = colors[2]
     let color2 = colors[3]
     
@@ -52,6 +54,9 @@ export class CardProductListComponent implements OnInit {
 
   // Navega para a tela de detalhes passando o produto como parametro
   Click() {
+    this.gtmService.pushTag({
+      event: this.darkPatterned ? 'DP-PRODUCT-CARD-CLICKED' : 'PRODUCT-CARD-CLICKED'
+    })
 
     this.nagging.setProduct(this.product)
 

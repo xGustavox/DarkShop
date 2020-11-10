@@ -35,11 +35,31 @@
         text-align: center;
         background-color: #1a1a1a;
         transition: .1s ease-in;
+        position: relative;
+        min-height: 150px;
 
         img {
             width: 100%;
             display: block;
         }
+
+        // .loading-skeleton {
+        //     width: 100px;
+        //     height: 100px;
+        //     position: absolute;
+        //     left: 50%;
+        //     margin-left: -52.5px;
+        //     display: flex;
+        //     align-content: center;
+        //     align-items: center;
+
+        //     img {
+        //         width: 25px;
+        //         height: 21.64px;
+        //         height: auto;
+        //         animation: spin 1.5s linear infinite;
+        //     }
+        // }
     }
 
     .info {
@@ -86,5 +106,14 @@
         left: 0;
         border-radius: 0;
         z-index: 1000;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

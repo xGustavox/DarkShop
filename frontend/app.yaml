@@ -1,14 +1,55 @@
+# runtime: python27
+# api_version: 1
+# threadsafe: true
+# handlers:
+#   - url: /.*  
+#     static_files: dist/index.html
+#     upload: dist/index.html
+#     secure: always
+#     redirect_http_response_code: 301
+
+#   - url: /
+#     static_dir: dist
+#     secure: always
+#     redirect_http_response_code: 301
+
 runtime: python27
-api_version: 1
 threadsafe: true
+api_version: 1
+
 handlers:
+- url: /(.+\.js)
+  static_files: dist/\1
+  upload: dist/(.+\.js)
+
+- url: /(.+\.css)
+  static_files: dist/\1
+  upload: dist/(.+\.css)
+
+- url: /(.+\.png)
+  static_files: dist/\1
+  upload: dist/(.+\.png)
+
+- url: /(.+\.jpg)
+  static_files: dist/\1
+  upload: dist/(.+\.jpg)
+
+# - url: /(.+\.svg)
+#   static_files: dist/\1
+#   upload: dist/(.+\.svg)
+
+- url: /favicon.ico
+  static_files: dist/favicon.ico
+  upload: dist/favicon.ico
+
+- url: /(.+\.json)
+  static_files: dist/\1
+  upload: dist/(.+\.json)
+
+- url: /(.+)
+  static_files: dist/index.html
+  upload: dist/index.html
+
 - url: /
   static_files: dist/index.html
   upload: dist/index.html
-  secure: always
-  redirect_http_response_code: 301
-- url: /
-  static_dir: dist
-  secure: always
-  redirect_http_response_code: 301
-

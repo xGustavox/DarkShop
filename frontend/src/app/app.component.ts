@@ -48,6 +48,8 @@ export class AppComponent {
     if (localStorage.getItem('darkPatterned') == undefined)
       localStorage.setItem('darkPatterned', `{"darkPatterned": ${Math.random() < 0.5 ? true : false}}`)
 
+    // localStorage.setItem('darkPatterned', `{"darkPatterned": true}`)
+
     this.NaggingSync()
   }
 

@@ -26,10 +26,10 @@ export class CheckboxComponent implements OnInit {
 
   change(e) {
     this.onChange(e)
-    this.gtmService.pushTag({
-      event: 'checkbox-changed',
-      teste: "1",
-      teste2: "2"
-    })
+    if (this.darkPatterned) {
+      this.gtmService.pushTag({
+        event: 'DP-CHECKBOX-CLICKED'
+      })
+    }
   }
 }

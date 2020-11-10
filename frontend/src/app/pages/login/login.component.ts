@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { LoadingService } from 'src/app/core/services/loading/loading.service';
 import { Title } from '@angular/platform-browser';
-import { of } from 'rxjs'
+import { of, pipe } from 'rxjs'
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,12 @@ export class LoginComponent implements OnInit {
     this.loginForm = formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
+    })
+ 
+    this.loginForm.controls.email.valueChanges.pipe(
+      debounceTime(500)
+    ).subscribe((res: any) => {
+      this.loginForm.controls.email.setValue(res.trim())
     })
   }
 

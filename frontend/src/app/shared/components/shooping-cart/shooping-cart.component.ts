@@ -5,6 +5,7 @@ import { LoadingService } from 'src/app/core/services/loading/loading.service';
 import { environment } from 'src/environments/environment';
 import { ProductsService } from 'src/app/core/services/products/products.service'
 import 'src/app/shared/models/product'
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
   selector: 'shooping-cart',
@@ -16,8 +17,10 @@ export class ShoopingCartComponent implements OnInit {
   @ViewChild('shoopingModal') shoopingModal: ElementRef
   @Input() darkPatterned = JSON.parse(localStorage.getItem('darkPatterned')).darkPatterned
 
+  logistic
   qtdProducts
   price = 0
+  moreCosts = 0
   sale
   darkPatternedProducts = []
 
@@ -26,11 +29,13 @@ export class ShoopingCartComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private router: Router,
     private loadingS: LoadingService,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private gtmService: GoogleTagManagerService
   ) 
   { 
     this.RenderShoppingCartSubscription()
     this.CheckoutSale = this.CheckoutSale.bind(this)
+    this.moreCosts = shoppingCartService.sale.logistic + shoppingCartService.sale.shipping
   }
 
   ngOnInit(): void { }
@@ -129,6 +134,10 @@ export class ShoopingCartComponent implements OnInit {
         this.shoppingCartService.Remove(i)
         break;
       case 'relatedProducts':
+        this.gtmService.pushTag({
+          event: 'DP-REMOVE-RELATED-PRODUCT'
+        })
+
         this.darkPatternedProducts.splice(i, 1)
         this.CalculateShoopingCartData(this.sale.products)
         break;
@@ -141,8 +150,11 @@ export class ShoopingCartComponent implements OnInit {
     this.loadingS.show()
 
     this.shoppingCartService.Checkout(this.darkPatternedProducts).subscribe(resp => {
+      
       this.loadingS.dismiss()
       this.router.navigate(['thankyou'])
+
+      this.shoppingCartService.ClearSale()
     })
   }  
 }

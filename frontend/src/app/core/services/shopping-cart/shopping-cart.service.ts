@@ -14,7 +14,7 @@ export class ShoppingCartService {
     user: null,
     products: [],
     logistic: 0,
-    shipping: 0
+    shipping: 10
   }
   
   statusChanged = new BehaviorSubject(null)
@@ -24,7 +24,10 @@ export class ShoppingCartService {
     private conn: ConnectService,
     private user: UserService,
     private naggingService: NaggingService,
-  ) { }
+  ) 
+  { 
+    this.sale.logistic = this.LogisticValue()
+  }
 
   AddToCart(product) {
     this.naggingService.AddedTheProduct(product)
@@ -39,6 +42,21 @@ export class ShoppingCartService {
 
     if (this.sale.products.length == 0)
       this.toastr.warning('Sua sacola esta vazia!')
+  }
+
+  ClearSale() {
+    this.sale = {
+      user: null,
+      products: [],
+      logistic: 0,
+      shipping: 10
+    }
+
+    this.statusChanged.next(null)
+  }
+
+  LogisticValue() {
+    return Number((Math.random() * 5 + 10).toFixed())
   }
 
   Checkout(aditionalProducts: Product[]) {

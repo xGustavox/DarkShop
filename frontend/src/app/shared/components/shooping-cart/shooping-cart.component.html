@@ -89,12 +89,13 @@
                         </li>
                         <li class="total">
                             <span class="label">Total</span>
-                            <span class="price">R$ {{(price + sale.shipping + sale.logistic).toLocaleString('pt-BR')}}</span>
+                            <span *ngIf="darkPatterned" class="price">R$ {{(price + sale.shipping + sale.logistic).toLocaleString('pt-BR')}}</span>
+                            <span *ngIf="!darkPatterned" class="price">R$ {{(price + sale.shipping).toLocaleString('pt-BR')}}</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="warning" *ngIf="price > 100">
+            <div class="warning" *ngIf="(price + moreCosts) > 100">
                 O valor do pedido deve ser até <span>R$ 100</span>
             </div>
             <div class="order">
